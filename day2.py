@@ -2,6 +2,31 @@
 
 import numpy as np
 
+
+# define functions
+def check_signs(x):
+    difference = np.diff(x)
+    sign_diff = np.abs(np.sign(difference).sum()) == len(x) - 1
+
+    return sign_diff
+
+
+def check_signs_damp(x):
+    sign_diff = False
+    for idx, val in enumerate(x):
+        y = x
+        y.pop(idx)
+        sign_diff = np.logical_or(sign_diff, check_signs(y))
+
+
+def check_gap(x):
+    difference = np.diff(x)
+    gap_size = np.all(np.logical_and(np.abs(difference) >= 1, np.abs(difference) <= 3))
+
+    return gap_size
+
+
+# %% day 2a
 input_file = "test"
 input_file = "input_d2"
 
@@ -13,23 +38,20 @@ with open(input_file, "r") as file:
 
         print(f"Input list is: {x}")
 
-        difference = np.diff(x)
-        sign_diff = np.abs(np.sign(difference).sum()) == len(x) - 1
-        print(f"All decreasing or increasing: {sign_diff}")
+        sign_check = check_signs(x)
+        print(f"Sign of change is correct: {sign_check}")
 
-        gap_size = np.all(
-            np.logical_and(np.abs(difference) >= 1, np.abs(difference) <= 3)
-        )
-        print(f"Gap size satifies requirements within [1,3]: {gap_size}")
+        gap_check = check_gap(x)
+        print(f"Magnitude of change is correct: {gap_check}")
 
-        if gap_size and sign_diff:
+        if gap_check and sign_check:
             counter += 1
 
 print(f"Total number of safe reports is: {counter}")
 # %% day2b
+
 input_file = "test"
 # input_file = "input_d2"
-
 counter = 0
 with open(input_file, "r") as file:
     for row in file.readlines():
@@ -38,28 +60,15 @@ with open(input_file, "r") as file:
 
         print(f"Input list is: {x}")
 
-        sign_diff = check_signs(x)
-        gap_check = check_gap(x)
+        sign_check = check_signs(x)
+        print(f"Sign of change is correct: {sign_check}")
+        damp_sign = check_signs_damp(x)
 
-        if gap_size and sign_diff:
-            counter += 1
+        print(f"Dampened sign of change is correct: {sign_check}")
+        # gap_check = check_gap(x)
+        # print(f"Magnitude of change is correct: {gap_check}")
 
-print(f"Total number of safe reports is: {counter}")
+        # if gap_check and sign_check:
+        #     counter += 1
 
-
-# %% define functions
-
-
-def check_signs(x):
-    difference = np.diff(x)
-    sign_diff = np.abs(np.sign(difference).sum()) == len(x) - 1
-
-    return sign_diff
-
-
-def check_gap(x):
-    difference = np.diff(x)
-    gap_size = np.all(np.logical_and(np.abs(difference) >= 1, np.abs(difference) <= 3))
-
-
-# %%
+# print(f"Total number of safe reports is: {counter}")

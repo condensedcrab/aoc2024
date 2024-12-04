@@ -16,7 +16,9 @@ def check_signs_damp(x):
     for idx, val in enumerate(x):
         y = x
         y.pop(idx)
-        sign_diff = np.logical_or(sign_diff, check_signs(y))
+        if check_signs(y):
+            sign_diff = True
+            break
 
     return sign_diff
 

@@ -76,15 +76,13 @@ with open(input_file, "r") as file:
 
         print(f"Input list is: {x}")
 
-        sign_check = check_signs(x)
-        print(f"Sign of change is correct: {sign_check}")
         damp_sign = check_signs_damp(x)
-
         print(f"Dampened sign of change is correct: {damp_sign }")
-        # gap_check = check_gap(x)
-        # print(f"Magnitude of change is correct: {gap_check}")
 
-        # if gap_check and sign_check:
-        #     counter += 1
+        damp_gap = check_gap_damp(x)
+        print(f"Magnitude of change is correct: {damp_gap}")
 
-# print(f"Total number of safe reports is: {counter}")
+        if damp_sign and damp_gap:
+            counter += 1
+
+print(f"Total number of safe reports is: {counter}")

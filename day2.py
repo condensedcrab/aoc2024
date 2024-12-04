@@ -21,7 +21,7 @@ def check_signs_damp(x):
                 sign_diff = True
                 break
 
-    return sign_diff
+    return [sign_diff, x]
 
 
 def check_gap(x):
@@ -33,15 +33,17 @@ def check_gap(x):
 
 def check_gap_damp(x):
     gap_size = check_gap(x)
+    z = x.copy()
     if not gap_size:
         for idx, val in enumerate(x):
             y = x.copy()
             y.pop(idx)
             if check_gap(y):
                 gap_size = True
+                z = y.copy()
                 break
 
-    return gap_size
+    return [gap_size, z]
 
 
 # %% day 2a
@@ -76,15 +78,21 @@ with open(input_file, "r") as file:
         l = row.split((" "))
         x = [int(a) for a in l]
 
-        print(f"Input list is: {x}")
+        # print(f"Input list is: {x}"
 
         damp_sign = check_signs_damp(x)
-        print(f"Dampened sign of change is correct: {damp_sign }")
 
-        damp_gap = check_gap_damp(x)
-        print(f"Magnitude of change is correct: {damp_gap}")
+        if damp_sign[0] != check_signs(x):
+            print(f"Input list is: {x}")
+            print(f"Damp  list is: {damp_sign[1]}")
 
-        if damp_sign and damp_gap:
-            counter += 1
+        print(f"Dampened sign of change is correct: {damp_sign[0] }")
 
-print(f"Total number of safe reports is: {counter}")
+#         damp_gap = check_gap_damp(x)
+#         # print(f"Dampened magnitude of change is correct: {damp_gap}")
+
+#         if damp_sign[0] and damp_gap[0]:
+#             # print(f"Dampened safety is good ")
+#             counter += 1
+
+# print(f"Total number of safe reports is: {counter}")

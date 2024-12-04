@@ -18,10 +18,18 @@ def check_signs_damp(x):
         y.pop(idx)
         sign_diff = np.logical_or(sign_diff, check_signs(y))
 
+    return sign_diff
+
 
 def check_gap(x):
     difference = np.diff(x)
     gap_size = np.all(np.logical_and(np.abs(difference) >= 1, np.abs(difference) <= 3))
+
+    return gap_size
+
+
+def check_gap_damp(x):
+    gap_size = False
 
     return gap_size
 

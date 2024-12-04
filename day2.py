@@ -68,8 +68,8 @@ with open(input_file, "r") as file:
 print(f"Total number of safe reports is: {counter}")
 # %% day2b
 
-input_file = "test"
-# input_file = "input_d2"
+# input_file = "test"
+input_file = "input_d2"
 counter = 0
 with open(input_file, "r") as file:
     for row in file.readlines():

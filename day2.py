@@ -14,7 +14,7 @@ def check_signs(x):
 def check_signs_damp(x):
     sign_diff = False
     for idx, val in enumerate(x):
-        y = x
+        y = x.copy()
         y.pop(idx)
         if check_signs(y):
             sign_diff = True

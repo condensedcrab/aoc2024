@@ -4,7 +4,7 @@ import numpy as np
 
 input_file = "input_d2"
 
-
+counter = 0
 with open(input_file, "r") as file:
     for row in file.readlines():
         l = row.split((" "))
@@ -21,5 +21,6 @@ with open(input_file, "r") as file:
         )
         print(f"Gap size satifies requirements within [1,3]: {gap_size}")
 
-
+        if gap_size and sign_diff:
+            counter += 1
 # %%

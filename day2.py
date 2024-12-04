@@ -12,13 +12,14 @@ def check_signs(x):
 
 
 def check_signs_damp(x):
-    sign_diff = False
-    for idx, val in enumerate(x):
-        y = x.copy()
-        y.pop(idx)
-        if check_signs(y):
-            sign_diff = True
-            break
+    sign_diff = check_signs(x)
+    if not sign_diff:
+        for idx, val in enumerate(x):
+            y = x.copy()
+            y.pop(idx)
+            if check_signs(y):
+                sign_diff = True
+                break
 
     return sign_diff
 
@@ -31,13 +32,14 @@ def check_gap(x):
 
 
 def check_gap_damp(x):
-    gap_size = False
-    for idx, val in enumerate(x):
-        y = x.copy()
-        y.pop(idx)
-        if check_gap(y):
-            gap_size = True
-            break
+    gap_size = check_gap(x)
+    if not gap_size:
+        for idx, val in enumerate(x):
+            y = x.copy()
+            y.pop(idx)
+            if check_gap(y):
+                gap_size = True
+                break
 
     return gap_size
 

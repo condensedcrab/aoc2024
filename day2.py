@@ -6,8 +6,11 @@ input_file = "input_d2"
 
 
 with open(input_file, "r") as file:
+    for row in file.readlines():
+        l = row.split((" "))
+        x = [int(a) for a in l]
 
-    for i in file.readlines():
-        print(i)
+        print(x)
+
 
 # %%

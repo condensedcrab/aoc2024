@@ -13,15 +13,17 @@ def check_signs(x):
 
 def check_signs_damp(x):
     sign_diff = check_signs(x)
+    z = x.copy()
     if not sign_diff:
         for idx, val in enumerate(x):
             y = x.copy()
             y.pop(idx)
             if check_signs(y):
                 sign_diff = True
+                z = y.copy()
                 break
 
-    return [sign_diff, x]
+    return [sign_diff, z]
 
 
 def check_gap(x):
@@ -86,7 +88,7 @@ with open(input_file, "r") as file:
             print(f"Input list is: {x}")
             print(f"Damp  list is: {damp_sign[1]}")
 
-        print(f"Dampened sign of change is correct: {damp_sign[0] }")
+        # print(f"Dampened sign of change is correct: {damp_sign[0] }")
 
 #         damp_gap = check_gap_damp(x)
 #         # print(f"Dampened magnitude of change is correct: {damp_gap}")

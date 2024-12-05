@@ -80,29 +80,22 @@ with open(input_file, "r") as file:
         l = row.split((" "))
         x = [int(a) for a in l]
 
-        # print(f"Input list is: {x}"
+        sign_check = check_signs(x)
+        gap_check = check_gap(x)
 
-        damp_sign = check_signs_damp(x)
-
-        # if damp_sign[0] != check_signs(x):
-        #     print("\nSign Check:")
-        #     print(f"Input list is: {x}")
-        #     print(f"Damp  list is: {damp_sign[1]}")
-
-        # print(f"Dampened sign of change is correct: {damp_sign[0] }")
-
-        damp_gap = check_gap_damp(x)
-
-        # if damp_gap[0] != check_gap(x):
-        #     print(f"\nGap Size:")
-        #     print(f"Input list is: {x}")
-        #     print(f"Damp  list is: {damp_gap[1]}")
-
-        #         # print(f"Dampened magnitude of change is correct: {damp_gap}")
-
-        if damp_sign[0] and damp_gap[0] and not check_signs(x) and not check_gap(x):
-            print(f"Correct list is: {damp_gap[1]}")
-            # print(f"Dampened safety is good ")
+        if sign_check and gap_check:
             counter += 1
+        else:
+            for idx, val in enumerate(x):
+                y = x.copy()
+                y.pop(idx)
+
+                sign_check = check_signs(y)
+                gap_check = check_gap(y)
+
+                if sign_check and gap_check:
+                    counter += 1
+                    break
+
 
 print(f"Total number of safe reports is: {counter}")

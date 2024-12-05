@@ -9,6 +9,8 @@ matches = p.findall(s)
 
 print(matches)
 
-p2 = re.compile(r"\d+,\d+")
+output = 0
+for m in matches:
+    output += int(m[0]) * int(m[1])
 
-# for m in matches:
+print(f"Total output is: {output}")

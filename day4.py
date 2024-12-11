@@ -42,7 +42,8 @@ def diagonal_search(s):
 
         if test_str in ["XMAS", "SAMX"]:
             counts += 1
-        print(f"Diag found: {counts}")
+
+    print(f"Diag found: {counts}")
     return counts
 
 
@@ -65,7 +66,7 @@ def antidiagonal_search(s):
         if test_str in ["XMAS", "SAMX"]:
             counts += 1
 
-        print(f"Antidiag found: {counts}")
+    print(f"Antidiag found: {counts}")
     return counts
 
 

@@ -53,14 +53,14 @@ def antidiagonal_search(s):
             continue
 
         # check column position so we don't overrun columns into the newline char
-        if divmod(idx, 11)[1] > 6:
+        if divmod(idx, 11)[1] < 3:
             continue
 
         # construct diagonal
         row_size = 11
         test_str = ""
         for i in range(0, 4):
-            test_str += s[idx + (row_size * i) + i]
+            test_str += s[idx + (row_size * i) - i]
 
         print(test_str)
 

@@ -23,14 +23,38 @@ def col_search(s):
 def diagonal_search(s):
     counts = 0
     for idx, val in enumerate(s):
+        # check that we don't overrun the number of rows
+        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
+            continue
 
-        # check if downward diagonal fits within row and column borders
-        # if divmod(idx, 10)[0] >= divmod(len(s), 10)[0] - 3:
-        #     continue
+        # check column position so we don't overrun columns into the newline char
         if divmod(idx, 11)[1] > 6:
             continue
-        if idx > 50:
-            break
+
+        # construct diagonal
+        row_size = 11
+        test_str = ""
+        for i in range(0, 4):
+            test_str += s[idx + (row_size * i) + i]
+
+        print(test_str)
+
+        if test_str in ["XMAS", "SAMX"]:
+            print(f"Found match: {test_str}. Count is: {counts}")
+            counts += 1
+    return counts
+
+
+def antidiagonal_search(s):
+    counts = 0
+    for idx, val in enumerate(s):
+        # check that we don't overrun the number of rows
+        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
+            continue
+
+        # check column position so we don't overrun columns into the newline char
+        if divmod(idx, 11)[1] > 6:
+            continue
 
         # construct diagonal
         row_size = 11
@@ -56,8 +80,7 @@ with open(input_file, "r") as file:
         s += row
 
 # print(s)
-row_search(s)
-col_search(s)
-diagonal_search(s)
+total_counts = row_search(s) + col_search(s) + diagonal_search(s)
 
+print(f"Total instances of XMAS found: {total_counts}")
 # format is 9 letters with a '\n' char

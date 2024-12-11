@@ -80,7 +80,9 @@ with open(input_file, "r") as file:
         s += row
 
 # print(s)
-total_counts = row_search(s) + col_search(s) + diagonal_search(s)
+total_counts = (
+    row_search(s) + col_search(s) + diagonal_search(s) + antidiagonal_search(s)
+)
 
 print(f"Total instances of XMAS found: {total_counts}")
 # format is 9 letters with a '\n' char

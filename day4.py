@@ -2,19 +2,30 @@
 import re
 
 
-def row_search():
-
-    return None
-
-
-def col_search():
-
-    return None
+def row_search(s):
+    counts = 0
+    for idx, val in enumerate(s):
+        if s[idx : idx + 4] in ["XMAS", "SAMX"]:
+            counts += 1
+    return counts
 
 
-def diagonal_search():
+def col_search(s):
+    counts = 0
+    for idx, val in enumerate(s):
+        if s[idx : idx + 40 : 10] in ["XMAS", "SAMX"]:
+            print(s[idx : idx + 40 : 10])
+            counts += 1
+    return counts
 
-    return None
+
+def diagonal_search(s):
+    counts = 0
+    for idx, val in enumerate(s):
+        if s[idx : idx + 40 : 10] in ["XMAS", "SAMX"]:
+            print(s[idx : idx + 40 : 10])
+            counts += 1
+    return counts
 
 
 # %%
@@ -28,7 +39,4 @@ with open(input_file, "r") as file:
 
 print(s)
 
-p = re.compile(r"(?:XMAS)| (?:SAMX)")
-
-m = p.findall(s)
-print(m)
+# format is 9 letters with a '\n' char

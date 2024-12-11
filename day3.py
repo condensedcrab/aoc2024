@@ -29,17 +29,13 @@ with open(input_file, "r") as file:
         s = row
         matches = p.findall(s)
 
+        # clean up the parsed results
+        for m in matches:
+            for phrase in m:
+                if phrase != "":
+                    clean_match.append(phrase)
+
 # s = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
-
-
-# print(matches)
-
-# clean up the parsed results
-
-for m in matches:
-    for phrase in m:
-        if phrase != "":
-            clean_match.append(phrase)
 
 print(clean_match)
 

@@ -1,5 +1,5 @@
 # %% define functions
-import re
+from operator import itemgetter
 
 
 def row_search(s):
@@ -14,7 +14,6 @@ def col_search(s):
     counts = 0
     for idx, val in enumerate(s):
         if s[idx : idx + 40 : 10] in ["XMAS", "SAMX"]:
-            print(s[idx : idx + 40 : 10])
             counts += 1
     return counts
 
@@ -23,7 +22,6 @@ def diagonal_search(s):
     counts = 0
     for idx, val in enumerate(s):
         if s[idx : idx + 40 : 10] in ["XMAS", "SAMX"]:
-            print(s[idx : idx + 40 : 10])
             counts += 1
     return counts
 

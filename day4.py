@@ -41,6 +41,7 @@ def diagonal_search(s):
         print(test_str)
 
         if test_str in ["XMAS", "SAMX"]:
+            print(f"Found match: {test_str}. Count is: {counts}")
             counts += 1
     return counts
 

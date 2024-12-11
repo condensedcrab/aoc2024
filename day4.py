@@ -1,17 +1,21 @@
 # %% define functions
 import re
 
-def row_search:
-    
-    return
 
-def col_search:
-    
-    return
+def row_search():
 
-def diagonal_search:
-    
-    return
+    return None
+
+
+def col_search():
+
+    return None
+
+
+def diagonal_search():
+
+    return None
+
 
 # %%
 

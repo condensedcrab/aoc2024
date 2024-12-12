@@ -15,7 +15,9 @@ class day5:
         print(self.rules)
         print(self.updates)
         self.correct = []
+        self.incorrect = []
         self.correct_sum = 0
+        self.incorrect_sum = 0
         
     def verify_updates(self):
         """
@@ -44,6 +46,8 @@ class day5:
             
             if update_validity:
                 self.correct.append(update)
+            else:
+                self.incorrect.append(update)
 
     def sum_middle_updates(self):
         for l in self.correct:

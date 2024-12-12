@@ -26,19 +26,20 @@ def col_search(s):
 def diagonal_search(s):
     counts = 0
     for idx, val in enumerate(s):
-        # check that we don't overrun the number of rows
-        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
-            continue
 
         # check column position so we don't overrun columns into the newline char
         if divmod(idx, 11)[1] > 6:
+            continue
+
+        # check that we don't overrun the number of rows
+        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
             continue
 
         # construct diagonal
         row_size = 11
         test_str = ""
         for i in range(0, 4):
-            test_str += s[idx + (row_size * i) + i]
+            test_str += s[idx + i * (row_size + 1)]
 
         if test_str in ["XMAS", "SAMX"]:
             counts += 1
@@ -51,7 +52,7 @@ def antidiagonal_search(s):
     counts = 0
     for idx, val in enumerate(s):
         # check that we don't overrun the number of rows
-        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
+        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 3:
             continue
 
         # check column position so we don't overrun columns into the newline char
@@ -62,7 +63,7 @@ def antidiagonal_search(s):
         row_size = 11
         test_str = ""
         for i in range(0, 4):
-            test_str += s[idx + (row_size * i) - i]
+            test_str += s[idx + i * (row_size + 1)]
         if test_str in ["XMAS", "SAMX"]:
             counts += 1
 

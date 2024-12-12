@@ -38,9 +38,9 @@ class day5:
                         print(f"Rule broken: {s}|{r}.")
                         update_validity = False
                         break
-                    else:
+                    elif update.find(r) > update.find(s):
+                        print(f"Rule satisfied: {s} is before {r}.")
                         continue
-                        # print(f"Rule satisfied: {s} is before {r}.")
             
             if update_validity:
                 self.correct.append(update)

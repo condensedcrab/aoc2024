@@ -86,7 +86,10 @@ total_counts = (
     row_search(s) + col_search(s) + diagonal_search(s)
 )
 
+xmas_counts = xmas_search(s)
 print(f"Total instances of XMAS found: {total_counts}")
+print(f"Total X-Mases found: {xmas_counts}")
+
 
 print(f"\n\n\nInput File: ")
 input_file = "input_d4"
@@ -101,7 +104,7 @@ total_counts = (
     row_search(s) + col_search(s) + diagonal_search(s)
 )
 
-xmas_counts = xmas_search(s)
+# xmas_counts = xmas_search(s)
 print(f"Total instances of XMAS found: {total_counts}")
 print(f"Total X-Mases found: {xmas_counts}")
 

@@ -16,7 +16,7 @@ def col_search(s):
     counts = 0
     row_size = 11
     for idx, val in enumerate(s):
-        if s[idx : idx + 40 : row_size] in ["XMAS", "SAMX"]:
+        if s[idx : idx + 4*row_size : row_size] in ["XMAS", "SAMX"]:
             counts += 1
 
     print(f"Col found: {counts}")
@@ -28,16 +28,11 @@ def diagonal_search(s):
     row_size = 11
     for idx, val in enumerate(s):
 
-        # check column position so we don't overrun columns into the newline char
-        if divmod(idx, row_size)[1] > 7:
-            continue
-
         # check that we don't overrun the number of rows
-        if divmod(idx, 11)[0] > divmod(len(s), 11)[0] - 4:
+        if idx + 3*(row_size + 1) >= len(s):
             continue
 
         # construct diagonal
-        row_size = 11
         test_str = ""
         for i in range(0, 4):
             test_str += s[idx + i * (row_size + 1)]
@@ -51,17 +46,15 @@ def diagonal_search(s):
 
 def antidiagonal_search(s):
     counts = 0
+    row_size = 11
+    
     for idx, val in enumerate(s):
-
-        # check column position so we don't overrun columns into the newline char
-        if divmod(idx, 11)[1] < 3:
-            continue
         # check that we don't overrun the number of rows
-        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
+        if idx + 3*(row_size + 1) >= len(s):
             continue
 
         # construct diagonal
-        row_size = 11
+
         test_str = ""
         for i in range(0, 4):
             test_str += s[idx + i * (row_size + 1)]

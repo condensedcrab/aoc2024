@@ -19,6 +19,7 @@ class day5:
     def verify_updates(self):
         
         for update in self.updates:
+            update_validity = True
             splits = update.split(",")
             
             for s in splits:
@@ -31,10 +32,13 @@ class day5:
                         continue
                     elif update.find(r) < update.find(s):
                         print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was before {s}. \nInput was: {update}\n")
+                        update_validity = False
                         continue
                     else:
                         print(f"Rule satisfied: {s} is before {r} in update: {update}")
-                        self.correct.append(update)
+            
+            if update_validity:
+                self.correct.append(update)
 
 
 if __name__ == '__main__':

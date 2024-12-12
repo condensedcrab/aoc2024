@@ -58,15 +58,17 @@ def xmas_search(s):
     
     for idx, val in enumerate(s):
         # check that we don't overrun the number of rows
-        if idx + 2*(row_size + 1) >= len(s) or idx + 2*(row_size - 1) < 0:
+        if idx + 1*(row_size + 1) >= len(s) or idx -1 *(row_size + 1) < 0:
             continue
         
         test_str = ["",""]
-        for i in range(0, 3):
+        for i in range(-1,2):
             test_str[0] += s[idx + i * (row_size + 1)]
             test_str[1] += s[idx + i * (row_size - 1)]
             
         if test_str[0] in ["MAS", "SAM"] and test_str[1] in ["MAS", "SAM"]:
+            pos = divmod(idx,row_size)
+            print(f"Row: {pos[0]} , Col: {pos[1]}")
             counts += 1
         
     print(f"X-mases found: {counts}")
@@ -87,7 +89,7 @@ total_counts = (
 )
 
 xmas_counts = xmas_search(s)
-print(f"Total instances of XMAS found: {total_counts}")
+print(f"\nTotal instances of XMAS found: {total_counts}")
 print(f"Total X-Mases found: {xmas_counts}")
 
 
@@ -104,7 +106,7 @@ total_counts = (
     row_search(s) + col_search(s) + diagonal_search(s)
 )
 
-# xmas_counts = xmas_search(s)
+xmas_counts = xmas_search(s)
 print(f"Total instances of XMAS found: {total_counts}")
 print(f"Total X-Mases found: {xmas_counts}")
 

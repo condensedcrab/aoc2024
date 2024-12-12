@@ -92,7 +92,10 @@ if __name__ == '__main__':
     print(f"\n\nDay 5: ")
     
     d.verify_updates()
-    # print(d.correct)
-    
     d.sum_middle_updates()
     print(f"Sum of middle item from correct updates is: {d.correct_sum}")
+    
+    # part 2
+    d.rearrange_incorrect()
+    print(f"Sum of middle item from re-arranged incorrect updates is: {d.incorrect_sum}")
+    

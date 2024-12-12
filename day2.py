@@ -50,7 +50,7 @@ def check_gap_damp(x):
 
 # %% day 2a
 input_file = "test"
-input_file = "input_d2"
+input_file = "inputs/input_d2"
 
 counter = 0
 with open(input_file, "r") as file:

@@ -2,7 +2,7 @@
 import re
 import numpy
 
-input_file = "input_d3"
+input_file = "inputs/input_d3"
 p = re.compile(r"mul[(](\d+),(\d+)+[)]")
 output = 0
 with open(input_file, "r") as file:

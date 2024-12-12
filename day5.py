@@ -27,6 +27,42 @@ class day5:
             print(f"\nInput data is: {update}")
             update_validity = True
             splits = update.split(",")
+
+            broken_rules = []
+            for s in splits:
+                for rule in self.rules:
+                    if rule[0] == s:
+                        r = rule[1]
+
+                        if update.find(r) == -1:
+                            # print(f"Rule was {s}|{r}, but {r} was not found.")
+                            continue
+                        elif update.find(r) < update.find(s):
+                            print(f"Rule broken: {s}|{r}.")
+                            update_validity = False
+                            broken_rules.append(rule)
+                        elif update.find(r) > update.find(s):
+                            print(f"Rule satisfied: {s} is before {r}.")
+                            continue
+            
+            if update_validity:
+                self.correct.append(update)
+            else:
+                self.incorrect.append([update,broken_rules])
+
+    def sum_middle_updates(self):
+        for l in self.correct:
+            split_nums = l.split(",")
+            idx = int((len(split_nums)-1)/2)
+            # print(f"Correct update is: {l}. Middle number is: {int(split_nums[idx])}.")
+            self.correct_sum += int(split_nums[idx])
+            
+    def rearrange_incorrect(self):
+        
+        for update in self.incorrect:
+            print(f"\nInput data is: {update}")
+            update_validity = True
+            splits = update.split(",")
         
             for s in splits:
                 for rule in self.rules:
@@ -44,17 +80,10 @@ class day5:
                             print(f"Rule satisfied: {s} is before {r}.")
                             continue
             
-            if update_validity:
-                self.correct.append(update)
-            else:
-                self.incorrect.append(update)
-
-    def sum_middle_updates(self):
-        for l in self.correct:
-            split_nums = l.split(",")
-            idx = int((len(split_nums)-1)/2)
-            # print(f"Correct update is: {l}. Middle number is: {int(split_nums[idx])}.")
-            self.correct_sum += int(split_nums[idx])
+            
+            
+        
+        
 
 
 if __name__ == '__main__':

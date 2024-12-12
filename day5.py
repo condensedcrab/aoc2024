@@ -27,20 +27,20 @@ class day5:
             splits = update.split(",")
         
             for s in splits:
-                r = self.rules.get(s)
-                if r is None:
-                    continue
-                else:
-                    if update.find(r) == -1:
-                        # print(f"Rule was {s}|{r}, but {r} was not found.")
-                        continue
-                    elif update.find(r) < update.find(s):
-                        print(f"Rule broken: {s}|{r}.")
-                        update_validity = False
-                        break
-                    elif update.find(r) > update.find(s):
-                        print(f"Rule satisfied: {s} is before {r}.")
-                        continue
+                for rule in self.rules:
+                    if rule[0] == s:
+                        r = rule[1]
+
+                        if update.find(r) == -1:
+                            # print(f"Rule was {s}|{r}, but {r} was not found.")
+                            continue
+                        elif update.find(r) < update.find(s):
+                            print(f"Rule broken: {s}|{r}.")
+                            update_validity = False
+                            break
+                        elif update.find(r) > update.find(s):
+                            print(f"Rule satisfied: {s} is before {r}.")
+                            continue
             
             if update_validity:
                 self.correct.append(update)

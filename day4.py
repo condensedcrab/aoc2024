@@ -43,7 +43,7 @@ def diagonal_search(s):
         # construct antidiagonal
         test_str = ""
         for i in range(0, 4):
-            test_str += s[idx + i * (row_size + 1)]
+            test_str += s[idx + i * (row_size - 1)]
             
         if test_str in ["XMAS", "SAMX"]:
             counts += 1

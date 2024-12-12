@@ -32,14 +32,15 @@ class day5:
                     continue
                 else:
                     if update.find(r) == -1:
-                        # print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was not found.")
+                        # print(f"Rule was {s}|{r}, but {r} was not found.")
                         continue
                     elif update.find(r) < update.find(s):
                         print(f"Rule broken: {s}|{r}.")
                         update_validity = False
                         break
                     else:
-                        print(f"Rule satisfied: {s} is before {r} in update: {update}")
+                        continue
+                        # print(f"Rule satisfied: {s} is before {r}.")
             
             if update_validity:
                 self.correct.append(update)
@@ -48,6 +49,7 @@ class day5:
         for l in self.correct:
             split_nums = l.split(",")
             idx = int((len(split_nums)-1)/2)
+            # print(f"Correct update is: {l}. Middle number is: {int(split_nums[idx])}.")
             self.correct_sum += int(split_nums[idx])
 
 

@@ -64,23 +64,14 @@ class day5:
             print(f"\nIncorrect update is: {update[0]}")
             print(f"Broken rules are: {update[1]}")
 
-            splits = update.split(",")
-        
+            rearr = update.copy()
+            splits = update[0].split(",")
+            broken_rules = update[1]
+            
             for s in splits:
-                for rule in self.rules:
+                for rule in broken_rules:
                     if rule[0] == s:
-                        r = rule[1]
-
-                        if update.find(r) == -1:
-                            # print(f"Rule was {s}|{r}, but {r} was not found.")
-                            continue
-                        elif update.find(r) < update.find(s):
-                            print(f"Rule broken: {s}|{r}.")
-                            update_validity = False
-                            break
-                        elif update.find(r) > update.find(s):
-                            print(f"Rule satisfied: {s} is before {r}.")
-                            continue
+  
             
             
             

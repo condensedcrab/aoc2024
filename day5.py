@@ -4,7 +4,7 @@ class day5:
 
         self.rules = {}
         self.updates = []
-        with open('test', 'r') as f:
+        with open('inputs/input_d5', 'r') as f:
             for line in f.readlines():
                 if "|" in line:
                     temp_str = line.strip("\n").split('|')

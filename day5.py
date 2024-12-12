@@ -14,6 +14,7 @@ class day5:
                     
         print(self.rules)
         print(self.updates)
+        self.correct = []
         
     def verify_updates(self):
         
@@ -21,17 +22,25 @@ class day5:
             splits = update.split(",")
             
             for s in splits:
-                r = self.rules.get('s')
+                r = self.rules.get(s)
                 if r is None:
                     continue
                 else:
-                    if update.find(r) < update.find(s):
+                    if update.find(r) == -1:
+                        print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was not found.")
+                        continue
+                    elif update.find(r) < update.find(s):
+                        print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was before {s}. \nInput was: {update}\n")
                         continue
                     else:
                         print(f"Rule satisfied: {s} is before {r} in update: {update}")
+                        self.correct.append(update)
 
 
 if __name__ == '__main__':
     d = day5()
 
     print(f"\n\nDay 5: ")
+    
+    d.verify_updates()
+    print(d.correct)

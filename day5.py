@@ -2,13 +2,13 @@ class day5:
 
     def __init__(self):
 
-        self.rules = {}
+        self.rules = []
         self.updates = []
         with open('inputs/input_d5', 'r') as f:
             for line in f.readlines():
                 if "|" in line:
                     temp_str = line.strip("\n").split('|')
-                    self.rules[temp_str[0]] = temp_str[1]
+                    self.rules.append(temp_str)
                 elif "," in line:
                     self.updates.append(line.strip("\n"))
                     
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     print(f"\n\nDay 5: ")
     
     d.verify_updates()
-    print(d.correct)
+    # print(d.correct)
     
     d.sum_middle_updates()
     print(f"Sum of middle item from correct updates is: {d.correct_sum}")

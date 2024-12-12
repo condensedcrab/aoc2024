@@ -94,7 +94,7 @@ print(f"Total X-Mases found: {xmas_counts}")
 
 
 print(f"\n\n\nInput File: ")
-input_file = "input_d4"
+input_file = "inputs/input_d4"
 
 s = ""
 with open(input_file, "r") as file:

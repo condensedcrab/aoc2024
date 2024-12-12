@@ -25,14 +25,15 @@ def col_search(s):
 
 def diagonal_search(s):
     counts = 0
+    row_size = 11
     for idx, val in enumerate(s):
 
         # check column position so we don't overrun columns into the newline char
-        if divmod(idx, 11)[1] > 7:
+        if divmod(idx, row_size)[1] > 7:
             continue
 
         # check that we don't overrun the number of rows
-        if divmod(idx, 10)[0] > divmod(len(s), 10)[0] - 4:
+        if divmod(idx, 11)[0] > divmod(len(s), 11)[0] - 4:
             continue
 
         # construct diagonal

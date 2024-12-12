@@ -22,21 +22,22 @@ class day5:
         Loop through updates and check against the ruleset provided. Use a flag to track validity and only toggle flag to false if a rule is found to be broken.
         """
         for update in self.updates:
+            print(f"\nInput data is: {update}")
             update_validity = True
             splits = update.split(",")
-            
+        
             for s in splits:
                 r = self.rules.get(s)
                 if r is None:
                     continue
                 else:
                     if update.find(r) == -1:
-                        print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was not found.")
+                        # print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was not found.")
                         continue
                     elif update.find(r) < update.find(s):
-                        print(f"Dictionary key was {s}, and rule was {s}|{r}, but {r} was before {s}. \nInput was: {update}\n")
+                        print(f"Rule broken: {s}|{r}.")
                         update_validity = False
-                        continue
+                        break
                     else:
                         print(f"Rule satisfied: {s} is before {r} in update: {update}")
             

@@ -17,7 +17,9 @@ class day5:
         self.correct = []
         
     def verify_updates(self):
-        
+        """
+        Loop through updates and check against the ruleset provided. Use a flag to track validity and only toggle flag to false if a rule is found to be broken.
+        """
         for update in self.updates:
             update_validity = True
             splits = update.split(",")
@@ -39,6 +41,7 @@ class day5:
             
             if update_validity:
                 self.correct.append(update)
+
 
 
 if __name__ == '__main__':

@@ -16,8 +16,9 @@ class day5:
         print(self.updates)
         self.correct = []
         self.incorrect = []
+        self.amended = []
         self.correct_sum = 0
-        self.incorrect_sum = 0
+        self.amended_sum = 0
         
     def verify_updates(self):
         """
@@ -42,7 +43,7 @@ class day5:
                             update_validity = False
                             broken_rules.append(rule)
                         elif update.find(r) > update.find(s):
-                            print(f"Rule satisfied: {s} is before {r}.")
+                            # print(f"Rule satisfied: {s} is before {r}.")
                             continue
             
             if update_validity:
@@ -60,8 +61,9 @@ class day5:
     def rearrange_incorrect(self):
         
         for update in self.incorrect:
-            print(f"\nInput data is: {update}")
-            update_validity = True
+            print(f"\nIncorrect update is: {update[0]}")
+            print(f"Broken rules are: {update[1]}")
+
             splits = update.split(",")
         
             for s in splits:

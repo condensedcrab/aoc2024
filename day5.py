@@ -15,6 +15,7 @@ class day5:
         print(self.rules)
         print(self.updates)
         self.correct = []
+        self.correct_sum = 0
         
     def verify_updates(self):
         """
@@ -42,6 +43,11 @@ class day5:
             if update_validity:
                 self.correct.append(update)
 
+    def sum_middle_updates(self):
+        for l in self.correct:
+            split_nums = l.split(",")
+            idx = int((len(split_nums)-1)/2)
+            self.correct_sum += int(split_nums[idx])
 
 
 if __name__ == '__main__':
@@ -51,3 +57,6 @@ if __name__ == '__main__':
     
     d.verify_updates()
     print(d.correct)
+    
+    d.sum_middle_updates()
+    print(f"Sum of middle item from correct updates is: {d.correct_sum}")

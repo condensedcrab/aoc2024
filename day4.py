@@ -39,33 +39,18 @@ def diagonal_search(s):
 
         if test_str in ["XMAS", "SAMX"]:
             counts += 1
-
-    print(f"Diag found: {counts}")
-    return counts
-
-
-def antidiagonal_search(s):
-    counts = 0
-    row_size = 11
-    
-    for idx, val in enumerate(s):
-        # check that we don't overrun the number of rows
-        if idx + 3*(row_size + 1) >= len(s):
-            continue
-
-        # construct diagonal
-
+        
+        c = counts
+        print(f"Diag found: {counts}")
+        # construct antidiagonal
         test_str = ""
         for i in range(0, 4):
             test_str += s[idx + i * (row_size + 1)]
-        if test_str in ["XMAS", "SAMX"]:
-            counts += 1
 
-    print(f"Antidiag found: {counts}")
+        print(f"Anti-diag found: {counts-c}")
+    
     return counts
 
-
-# %%
 
 input_file = "test"
 
@@ -76,7 +61,7 @@ with open(input_file, "r") as file:
 
 # print(s)
 total_counts = (
-    row_search(s) + col_search(s) + diagonal_search(s) + antidiagonal_search(s)
+    row_search(s) + col_search(s) + diagonal_search(s)
 )
 
 print(f"Total instances of XMAS found: {total_counts}")

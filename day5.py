@@ -61,16 +61,27 @@ class day5:
     def rearrange_incorrect(self):
         
         for update in self.incorrect:
-            print(f"\nIncorrect update is: {update[0]}")
-            print(f"Broken rules are: {update[1]}")
+            # print(f"\nIncorrect update is: {update[0]}")
+            # print(f"Broken rules are: {update[1]}")
 
-            rearr = update.copy()
             splits = update[0].split(",")
+            rearr = splits
             broken_rules = update[1]
             
-            for s in splits:
+            for idx,val in enumerate(rearr):
+                
+                indices = []
                 for rule in broken_rules:
-                    if rule[0] == s:
+                    if val == rule[0] and rearr.find(rule[1]) >= 0:
+                        indices.append(rearr.find(rule[1]))
+                        
+                # rearr.pop(idx)
+                # rearr.insert(min_idx,val)
+                print(f"Original update was: \n{splits}. \nRule broken was: {rule}")
+                # print(f"Update has been modified to: \n{rearr}")
+                continue
+                    
+                    
   
             
             

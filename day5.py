@@ -84,7 +84,8 @@ class day5:
 
             print(f"Original update was: \n{splits}.") #\nRules broken were: {broken_rules}")
             print(f"Update has been modified to: \n{rearr}")
-            continue
+            
+            self.amended.append(rearr)
                     
                     
   

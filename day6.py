@@ -2,6 +2,7 @@ class puzzle:
 
     def __init__(self):
         self.map = []
+        self.map_size = [len(self.map), len(self.map[0])]
         self.row_idx = []
         self.col_idx = []
         self.guard_past_positions = []
@@ -29,8 +30,8 @@ class puzzle:
 
     def guard_logic(self):
 
-        for i in range(0, 10):
-            self.next_step()
+        while self.row_idx in range(0,self.map_size[0]) and self.col_idx in range(0,self.map_size[1]):
+            
 
     def next_step(self):
 

@@ -2,8 +2,9 @@ class puzzle:
 
     def __init__(self):
         self.map = []
-        self.guard_loc = []
-        self.guard_positions = []
+        self.row_idx= []
+        self.col_idx = []
+        self.guard_past_positions = []
 
     def parse_input(self):
         with open("test", "r") as f:
@@ -36,7 +37,20 @@ class puzzle:
             )
 
     def next_step(map, row_idx, col_idx, direction):
-
+        
+        if direction == "up":
+            row_idx -= 1
+        elif direction == "down":
+            row_idx += 1
+        elif direction == "left":
+            col_idx -= 1
+        elif direction == "right":
+            col_idx += 1
+        else:
+            raise ValueError # should be unreachable
+        
+        next_tile = map[row_idx][col_idx]
+        if next_tile 
         return row_idx, col_idx, direction
 
         # move in direction

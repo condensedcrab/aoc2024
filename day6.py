@@ -5,7 +5,7 @@ class puzzle:
         self.row_idx= []
         self.col_idx = []
         self.guard_past_positions = []
-        self.direction = "up"
+        self.direction = 0
 
     def parse_input(self):
         with open("test", "r") as f:
@@ -30,25 +30,26 @@ class puzzle:
     def guard_logic(self):
 
         for i in range(0, 10):
-            row_idx, col_idx, direction = self.next_step(
-                self.map, row_idx, col_idx, direction
-            )
-
-    def next_step(map, row_idx, col_idx, direction):
+            self.next_step()
+            
+    def next_step(self):
         
-        if direction == "up":
+        if direction == 0: # up
             row_idx -= 1
-        elif direction == "down":
-            row_idx += 1
-        elif direction == "left":
-            col_idx -= 1
-        elif direction == "right":
+        elif direction == 1: # right
             col_idx += 1
+        elif direction == 2: # down
+            row_idx += 1
+        elif direction == 3: # left
+            col_idx -= 1
         else:
             raise ValueError # should be unreachable
         
         next_tile = map[row_idx][col_idx]
-        if next_tile 
+        if next_tile == "." | next_tile == "^":
+        
+        else:
+            direction 
         return row_idx, col_idx, direction
 
         # move in direction

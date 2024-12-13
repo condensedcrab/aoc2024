@@ -32,6 +32,7 @@ class puzzle:
         return
 
     def guard_logic(self):
+      
         counter = 0
         while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
             0, self.map_size[1]
@@ -86,8 +87,17 @@ class puzzle:
         new_list = []
         
         for m in self.guard_past_positions:
-            
-            if new_list 
+            if not new_list:
+                new_list.append(m)
+            else:
+                flag_found = False
+                for n in new_list:
+                    if m == n:
+                        flag_found = True
+                
+                if flag_found is False:
+                    new_list.append(n)
+                
                 
 
 

@@ -5,6 +5,7 @@ class puzzle:
         self.row_idx= []
         self.col_idx = []
         self.guard_past_positions = []
+        self.direction = "up"
 
     def parse_input(self):
         with open("test", "r") as f:
@@ -27,10 +28,6 @@ class puzzle:
         return
 
     def guard_logic(self):
-        # initialize state
-        row_idx = self.guard_loc[0]
-        col_idx = self.guard_loc[1]
-        direction = "up"
 
         for i in range(0, 10):
             row_idx, col_idx, direction = self.next_step(

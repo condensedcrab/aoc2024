@@ -2,7 +2,7 @@ class puzzle:
 
     def __init__(self):
         self.map = []
-        self.row_idx= []
+        self.row_idx = []
         self.col_idx = []
         self.guard_past_positions = []
         self.direction = 0
@@ -24,35 +24,40 @@ class puzzle:
         if col_idx > 0:
             self.row_idx = row_idx
             self.col_idx = col_idx
-            self.guard_past_positions.append([row_idx,col_idx])
+            self.guard_past_positions.append([row_idx, col_idx])
         return
 
     def guard_logic(self):
 
         for i in range(0, 10):
             self.next_step()
-            
+
     def next_step(self):
-        
-        if direction == 0: # up
-            self.row_idx -= 1
-        elif direction == 1: # right
-            self.col_idx += 1
-        elif direction == 2: # down
-            self.row_idx += 1
-        elif direction == 3: # left
-            self.col_idx -= 1
+
+        row = self.row_idx
+        col = self.col_idx
+
+        # find next position
+        if direction == 0:  # up
+            row -= 1
+        elif direction == 1:  # right
+            col = 1
+        elif direction == 2:  # down
+            row += 1
+        elif direction == 3:  # left
+            col -= 1
         else:
-            raise ValueError # should be unreachable
-        
-        next_tile = map[row_idx][col_idx]
+            raise ValueError  # should be unreachable
+
+        next_tile = map[row][col]
+
+        # determine if we continue or change directions
         if next_tile == "." | next_tile == "^":
-              
+            self.row_idx = row
+            self.col_idx = col
         else:
-            direction = direction+1 % 4
-            self.next_step()
-            
-        return 
+            direction = direction + 1 % 4
+        return
 
         # move in direction
 

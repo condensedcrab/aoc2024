@@ -12,7 +12,7 @@ class puzzle:
             for line in f.readlines():
                 self.map.append(list(line.replace("\n", "")))
 
-    def find_guard_start(self):
+    def init_guard(self):
         col_idx = -1
         for row_idx, row in enumerate(self.map):
             try:
@@ -24,7 +24,7 @@ class puzzle:
         if col_idx > 0:
             self.row_idx = row_idx
             self.col_idx = col_idx
-
+            self.guard_past_positions.append([row_idx,col_idx])
         return
 
     def guard_logic(self):
@@ -35,22 +35,24 @@ class puzzle:
     def next_step(self):
         
         if direction == 0: # up
-            row_idx -= 1
+            self.row_idx -= 1
         elif direction == 1: # right
-            col_idx += 1
+            self.col_idx += 1
         elif direction == 2: # down
-            row_idx += 1
+            self.row_idx += 1
         elif direction == 3: # left
-            col_idx -= 1
+            self.col_idx -= 1
         else:
             raise ValueError # should be unreachable
         
         next_tile = map[row_idx][col_idx]
         if next_tile == "." | next_tile == "^":
-        
+              
         else:
-            direction 
-        return row_idx, col_idx, direction
+            direction = direction+1 % 4
+            self.next_step()
+            
+        return 
 
         # move in direction
 
@@ -59,7 +61,7 @@ if __name__ == "__main__":
     p = puzzle()
     p.parse_input()
     # find current position of guard
-    p.find_guard_start()
+    p.init_guard()
 
     p.guard_logic()
 

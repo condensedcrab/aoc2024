@@ -98,8 +98,6 @@ class puzzle:
                 if flag_found is False:
                     new_list.append(n)
                 
-                
-
 
 if __name__ == "__main__":
     p = puzzle()

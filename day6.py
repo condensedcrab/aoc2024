@@ -2,7 +2,7 @@ class puzzle:
 
     def __init__(self):
         self.map = []
-        self.map_size = [len(self.map), len(self.map[0])]
+        self.map_size = []
         self.row_idx = []
         self.col_idx = []
         self.guard_past_positions = []
@@ -12,6 +12,8 @@ class puzzle:
         with open("test", "r") as f:
             for line in f.readlines():
                 self.map.append(list(line.replace("\n", "")))
+
+        self.map_size = [len(self.map), len(self.map[0])]
 
     def init_guard(self):
         col_idx = -1

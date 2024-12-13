@@ -8,6 +8,7 @@ class puzzle:
         self.guard_past_positions = []
         self.direction = 0
         self.unique_locs = []
+        self.new_obstacles = []
 
     def parse_input(self):
         with open("inputs/input_d6", "r") as f:
@@ -99,6 +100,34 @@ class puzzle:
                     new_list.append(m)
                     
         self.unique_locs = new_list
+        
+        
+    def calc_new_obstacle(self):
+        max_count = 50000
+        obstacle_list = []
+        
+        # loop through all positions and see if it impacts path traveled
+        for r in range(0,self.map_size[0]):
+            for c in range(0,self.map_size[1]):
+                
+        
+                counter = 0
+                flag_loop = False
+                while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
+                    0, self.map_size[1]
+                ):
+                    self.next_step()
+                    counter += 1
+                    print(counter)
+
+                    if counter >= max_count:
+                        obstacle_list.append([r,c])
+                        break
+                
+
+        
+        self.new_obstacles = obstacle_list
+        return
                 
 
 if __name__ == "__main__":
@@ -112,5 +141,7 @@ if __name__ == "__main__":
 
     print(f"Guard will travel to {len(p.unique_locs)} different positions.")
     # print(p.unique_locs)
+    
+    p.calc_new_obstacle()
 
     #

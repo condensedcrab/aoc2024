@@ -4,7 +4,7 @@ class day5:
 
         self.rules = []
         self.updates = []
-        with open('inputs/input_d5', 'r') as f:
+        with open('test', 'r') as f:
             for line in f.readlines():
                 if "|" in line:
                     temp_str = line.strip("\n").split('|')
@@ -72,14 +72,19 @@ class day5:
                 
                 indices = []
                 for rule in broken_rules:
-                    if val == rule[0] and rearr.find(rule[1]) >= 0:
-                        indices.append(rearr.find(rule[1]))
-                        
-                # rearr.pop(idx)
-                # rearr.insert(min_idx,val)
-                print(f"Original update was: \n{splits}. \nRule broken was: {rule}")
-                # print(f"Update has been modified to: \n{rearr}")
-                continue
+                    if val == rule[0] and rule[1] in rearr:
+                        indices.append(rearr.index(rule[1]))
+                
+                if len(indices) > 0:
+                    print(rearr)
+                    rearr.pop(idx)
+                    print(rearr)
+                    rearr.insert(min(indices),val)
+                    print(rearr)
+
+            print(f"Original update was: \n{splits}.") #\nRules broken were: {broken_rules}")
+            print(f"Update has been modified to: \n{rearr}")
+            continue
                     
                     
   
@@ -101,5 +106,5 @@ if __name__ == '__main__':
     
     # part 2
     d.rearrange_incorrect()
-    print(f"Sum of middle item from re-arranged incorrect updates is: {d.incorrect_sum}")
+    print(f"Sum of middle item from re-arranged incorrect updates is: {d._sum}")
     

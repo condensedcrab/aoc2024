@@ -86,15 +86,6 @@ class day5:
             print(f"Update has been modified to: \n{rearr}")
             
             self.amended.append(rearr)
-                    
-                    
-  
-            
-            
-            
-        
-        
-
 
 if __name__ == '__main__':
     d = day5()

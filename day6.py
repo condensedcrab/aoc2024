@@ -36,6 +36,7 @@ class puzzle:
             0, self.map_size[1]
         ):
             self.next_step()
+            counter += 1
             print(counter)
 
     def next_step(self):
@@ -47,7 +48,7 @@ class puzzle:
         if self.direction == 0:  # up
             row -= 1
         elif self.direction == 1:  # right
-            col = 1
+            col += 1
         elif self.direction == 2:  # down
             row += 1
         elif self.direction == 3:  # left

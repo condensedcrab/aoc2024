@@ -30,8 +30,10 @@ class puzzle:
 
     def guard_logic(self):
 
-        while self.row_idx in range(0,self.map_size[0]) and self.col_idx in range(0,self.map_size[1]):
-            
+        while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
+            0, self.map_size[1]
+        ):
+            self.next_step
 
     def next_step(self):
 
@@ -39,13 +41,13 @@ class puzzle:
         col = self.col_idx
 
         # find next position
-        if direction == 0:  # up
+        if self.direction == 0:  # up
             row -= 1
-        elif direction == 1:  # right
+        elif self.direction == 1:  # right
             col = 1
-        elif direction == 2:  # down
+        elif self.direction == 2:  # down
             row += 1
-        elif direction == 3:  # left
+        elif self.direction == 3:  # left
             col -= 1
         else:
             raise ValueError  # should be unreachable
@@ -54,10 +56,15 @@ class puzzle:
 
         # determine if we continue or change directions
         if next_tile == "." | next_tile == "^":
+            print(
+                f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{self.row},{self.col}]"
+            )
             self.row_idx = row
             self.col_idx = col
+
         else:
-            direction = direction + 1 % 4
+            self.direction = self.direction + 1 % 4
+            print(f"Obstacle reached: {next_tile}. New direction is: {self.direction}")
         return
 
         # move in direction

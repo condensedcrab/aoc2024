@@ -11,7 +11,7 @@ class puzzle:
         self.new_obstacles = []
 
     def parse_input(self):
-        with open("inputs/input_d6", "r") as f:
+        with open("test", "r") as f:
             for line in f.readlines():
                 self.map.append(list(line.replace("\n", "")))
 
@@ -106,11 +106,14 @@ class puzzle:
         max_count = 50000
         obstacle_list = []
         
+        original_map = self.map
+        
         # loop through all positions and see if it impacts path traveled
         for r in range(0,self.map_size[0]):
             for c in range(0,self.map_size[1]):
                 
-        
+                self.map = original_map
+                self.map[r][c] = "#"        
                 counter = 0
                 flag_loop = False
                 while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(

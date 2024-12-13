@@ -76,17 +76,22 @@ class day5:
                         indices.append(rearr.index(rule[1]))
                 
                 if len(indices) > 0:
-                    print(rearr)
+                    # print(rearr)
                     rearr.pop(idx)
-                    print(rearr)
+                    # print(rearr)
                     rearr.insert(min(indices),val)
-                    print(rearr)
+                    # print(rearr)
 
-            print(f"Original update was: \n{splits}.") #\nRules broken were: {broken_rules}")
-            print(f"Update has been modified to: \n{rearr}")
+            # print(f"Original update was: \n{splits}.") #\nRules broken were: {broken_rules}")
+            # print(f"Update has been modified to: \n{rearr}")
             
             self.amended.append(rearr)
 
+    def sum_middle_amended_updates(self):
+        for l in self.amended:
+            idx = int((len(l)-1)/2)
+            print(f"Amended update is: {l}. Middle number is: {int(l[idx])}.")
+            self.amended_sum += int(l[idx])
 if __name__ == '__main__':
     d = day5()
 
@@ -98,5 +103,6 @@ if __name__ == '__main__':
     
     # part 2
     d.rearrange_incorrect()
-    print(f"Sum of middle item from re-arranged incorrect updates is: {d._sum}")
+    d.sum_middle_amended_updates()
+    print(f"Sum of middle item from re-arranged incorrect updates is: {d.amended_sum}")
     

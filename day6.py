@@ -1,3 +1,5 @@
+import copy 
+
 class puzzle:
 
     def __init__(self):
@@ -69,16 +71,16 @@ class puzzle:
             self.row_idx = row
             self.col_idx = col
         if next_tile == "." or next_tile == "^":
-            print(
-                f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
-            )
+            # print(
+            #     f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
+            # )
             self.row_idx = row
             self.col_idx = col
             self.guard_past_positions.append([self.row_idx, self.col_idx])
 
         else:
             self.direction = (self.direction + 1) % 4
-            print(f"Obstacle reached: {next_tile}. New direction is: {self.direction}")
+            # print(f"Obstacle reached: {next_tile}. New direction is: {self.direction}")
 
             # we broke out of the map
 
@@ -106,28 +108,35 @@ class puzzle:
         max_count = 50000
         obstacle_list = []
         
-        original_map = list(self.map)
+
         
         # loop through all positions and see if it impacts path traveled
-        for r in range(0,self.map_size[0]):
-            for c in range(0,self.map_size[1]):
-                
-                self.map = list(original_map)
-                self.map[r][c] = "#"        
-                counter = 0
-                flag_loop = False
-                while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
-                    0, self.map_size[1]
-                ):
-                    self.next_step()
-                    counter += 1
-                    print(counter)
+        for u in self.unique_locs:
+            r = u[0]
+            c = u[1]
 
-                    if counter >= max_count:
-                        obstacle_list.append([r,c])
-                        break
-                
+            self.parse_input()
+            self.init_guard()
+            
+            if self.map[r][c] == "#":
+                continue
+            
+            self.map[r][c] = "#"        
+            counter = 0
+            flag_loop = False
+            while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
+                0, self.map_size[1]
+            ):
+                self.next_step()
+                counter += 1
+                print(counter)
 
+                if counter >= max_count:
+                    obstacle_list.append([r,c])
+
+                    break
+            
+            print(f"Potential Obstacle at: {r}|{c}. Counter reaeched: {counter}")
         
         self.new_obstacles = obstacle_list
         return

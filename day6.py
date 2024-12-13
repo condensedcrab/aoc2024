@@ -7,6 +7,7 @@ class puzzle:
         self.col_idx = []
         self.guard_past_positions = []
         self.direction = 0
+        self.unique_locs = 0
 
     def parse_input(self):
         with open("test", "r") as f:
@@ -40,7 +41,7 @@ class puzzle:
             print(counter)
 
     def next_step(self):
-
+        flag_within_map = True
         row = self.row_idx
         col = self.col_idx
 
@@ -56,9 +57,15 @@ class puzzle:
         else:
             raise ValueError  # should be unreachable
 
-        next_tile = self.map[row][col]
+        try:
+            next_tile = self.map[row][col]
+        except:
+            next_tile = "escape"
 
         # determine if we continue or change directions
+        if next_tile == "escape":
+            self.row_idx = row
+            self.col_idx = col
         if next_tile == "." or next_tile == "^":
             print(
                 f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
@@ -70,9 +77,18 @@ class puzzle:
         else:
             self.direction = (self.direction + 1) % 4
             print(f"Obstacle reached: {next_tile}. New direction is: {self.direction}")
+
+            # we broke out of the map
+
         return
 
-        # move in direction
+    def unique_locs(self):
+        new_list = []
+        
+        for m in self.guard_past_positions:
+            
+            if new_list 
+                
 
 
 if __name__ == "__main__":
@@ -83,6 +99,6 @@ if __name__ == "__main__":
 
     p.guard_logic()
 
-    print(f"Guard will travel to {len(self.guard_positions)} different positions.")
+    print(f"Guard will travel to {p.unique_locs} different positions.")
 
     #

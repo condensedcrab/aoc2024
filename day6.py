@@ -31,11 +31,12 @@ class puzzle:
         return
 
     def guard_logic(self):
-
+        counter = 0
         while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
             0, self.map_size[1]
         ):
-            self.next_step
+            self.next_step()
+            print(counter)
 
     def next_step(self):
 

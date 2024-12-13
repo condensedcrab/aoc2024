@@ -10,7 +10,7 @@ class puzzle:
         self.unique_locs = []
 
     def parse_input(self):
-        with open("test", "r") as f:
+        with open("inputs/input_d6", "r") as f:
             for line in f.readlines():
                 self.map.append(list(line.replace("\n", "")))
 
@@ -111,6 +111,6 @@ if __name__ == "__main__":
     p.calc_unique_locs()
 
     print(f"Guard will travel to {len(p.unique_locs)} different positions.")
-    print(p.unique_locs)
+    # print(p.unique_locs)
 
     #

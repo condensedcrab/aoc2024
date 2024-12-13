@@ -68,7 +68,7 @@ class puzzle:
             self.guard_past_positions.append([self.row_idx, self.col_idx])
 
         else:
-            self.direction = self.direction + 1 % 4
+            self.direction = (self.direction + 1) % 4
             print(f"Obstacle reached: {next_tile}. New direction is: {self.direction}")
         return
 

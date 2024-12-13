@@ -55,12 +55,12 @@ class puzzle:
         else:
             raise ValueError  # should be unreachable
 
-        next_tile = map[row][col]
+        next_tile = self.map[row][col]
 
         # determine if we continue or change directions
-        if next_tile == "." | next_tile == "^":
+        if next_tile == "." or next_tile == "^":
             print(
-                f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{self.row},{self.col}]"
+                f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
             )
             self.row_idx = row
             self.col_idx = col

@@ -106,13 +106,13 @@ class puzzle:
         max_count = 50000
         obstacle_list = []
         
-        original_map = self.map
+        original_map = list(self.map)
         
         # loop through all positions and see if it impacts path traveled
         for r in range(0,self.map_size[0]):
             for c in range(0,self.map_size[1]):
                 
-                self.map = original_map
+                self.map = list(original_map)
                 self.map[r][c] = "#"        
                 counter = 0
                 flag_loop = False
@@ -146,5 +146,6 @@ if __name__ == "__main__":
     # print(p.unique_locs)
     
     p.calc_new_obstacle()
+    print(f"We can place {len(p.new_obstacles)} new obstacles.")
 
     #

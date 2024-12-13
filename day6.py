@@ -7,7 +7,7 @@ class puzzle:
         self.col_idx = []
         self.guard_past_positions = []
         self.direction = 0
-        self.unique_locs = 0
+        self.unique_locs = []
 
     def parse_input(self):
         with open("test", "r") as f:
@@ -83,7 +83,7 @@ class puzzle:
 
         return
 
-    def unique_locs(self):
+    def calc_unique_locs(self):
         new_list = []
         
         for m in self.guard_past_positions:
@@ -96,7 +96,9 @@ class puzzle:
                         flag_found = True
                 
                 if flag_found is False:
-                    new_list.append(n)
+                    new_list.append(m)
+                    
+        self.unique_locs = new_list
                 
 
 if __name__ == "__main__":
@@ -106,7 +108,9 @@ if __name__ == "__main__":
     p.init_guard()
 
     p.guard_logic()
+    p.calc_unique_locs()
 
-    print(f"Guard will travel to {p.unique_locs} different positions.")
+    print(f"Guard will travel to {len(p.unique_locs)} different positions.")
+    print(p.unique_locs)
 
     #

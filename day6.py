@@ -27,7 +27,7 @@ class puzzle:
         if col_idx > 0:
             self.row_idx = row_idx
             self.col_idx = col_idx
-            self.guard_past_positions.append([row_idx, col_idx])
+            self.guard_past_positions.append([self.row_idx, self.col_idx])
         return
 
     def guard_logic(self):
@@ -65,6 +65,7 @@ class puzzle:
             )
             self.row_idx = row
             self.col_idx = col
+            self.guard_past_positions.append([self.row_idx, self.col_idx])
 
         else:
             self.direction = self.direction + 1 % 4

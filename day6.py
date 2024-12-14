@@ -106,7 +106,7 @@ class puzzle:
         
         
     def calc_new_obstacle(self):
-        max_count = 25000
+        max_count = 50000
         obstacle_list = []
         # reinit values
         og_map = copy.deepcopy(self.map)

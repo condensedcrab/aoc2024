@@ -71,9 +71,9 @@ class puzzle:
             self.row_idx = row
             self.col_idx = col
         if next_tile == "." or next_tile == "^":
-            print(
-                # f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
-            )
+            # print(
+            #     # f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
+            # )
             self.row_idx = row
             self.col_idx = col
             self.guard_past_positions.append([self.row_idx, self.col_idx])
@@ -111,7 +111,7 @@ class puzzle:
 
         
         # loop through all positions and see if it impacts path traveled
-        for u in self.unique_locs:
+        for u in [range(0,self.map_size[0]),range(0,self.map_size[1])]:
             r = u[0]
             c = u[1]
 
@@ -133,10 +133,9 @@ class puzzle:
 
                 if counter >= max_count:
                     obstacle_list.append([r,c])
-
+                    print(f"Obstacle at: {r}|{c}. Counter reached: {counter}")
                     break
             
-            print(f"Potential Obstacle at: {r}|{c}. Counter reached: {counter}")
         
         self.new_obstacles = obstacle_list
         return

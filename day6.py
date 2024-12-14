@@ -121,7 +121,7 @@ class puzzle:
             
             # if self.map[r][c] == "#":
             #     continue
-            self.map = copy.deepcopy(og_map)
+            self.parse_input()
             self.init_guard()
             self.map[r][c] = "#"        
             counter = 0

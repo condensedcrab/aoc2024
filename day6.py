@@ -107,6 +107,9 @@ class puzzle:
     def calc_new_obstacle(self):
         max_count = 50000
         obstacle_list = []
+        # reinit values
+        self.map = []
+        self.map_size = []
         
         # loop through all positions and see if it impacts path traveled
         for u in self.unique_locs:

@@ -108,18 +108,16 @@ class puzzle:
         max_count = 50000
         obstacle_list = []
         
-
-        
         # loop through all positions and see if it impacts path traveled
-        for u in [range(0,self.map_size[0]),range(0,self.map_size[1])]:
+        for u in self.unique_locs:
             r = u[0]
             c = u[1]
 
             self.parse_input()
             self.init_guard()
             
-            if self.map[r][c] == "#":
-                continue
+            # if self.map[r][c] == "#":
+            #     continue
             
             self.map[r][c] = "#"        
             counter = 0

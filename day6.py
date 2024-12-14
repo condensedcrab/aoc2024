@@ -13,6 +13,7 @@ class puzzle:
         self.new_obstacles = []
 
     def parse_input(self):
+        self.map=[]
         with open("test", "r") as f:
             for line in f.readlines():
                 self.map.append(list(line.replace("\n", "")))

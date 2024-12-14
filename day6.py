@@ -109,17 +109,15 @@ class puzzle:
         max_count = 25000
         obstacle_list = []
         # reinit values
-        self.map = []
-        self.map_size = []
+        og_map = copy.deepcopy(self.map)
+            
+        
         
         # loop through all positions and see if it impacts path traveled
-        new_count = 0
+        # new_count = 0
         for u in self.unique_locs:
             r = u[0]
             c = u[1]
-
-            self.parse_input()
-            self.init_guard()
             
             # if self.map[r][c] == "#":
             #     continue
@@ -127,6 +125,9 @@ class puzzle:
             self.map[r][c] = "#"        
             counter = 0
             flag_loop = False
+            # new_count += 1
+            # if new_count > 1000:
+            #     break
             while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
                 0, self.map_size[1]
             ):
@@ -134,10 +135,6 @@ class puzzle:
                 counter += 1
                 # print(counter)
 
-
-                new_count += 1
-                if new_count > 1000:
-                    break
                 if counter >= max_count:
                     obstacle_list.append([r,c])
                     # print(f"Obstacle at: {r}|{c}. Counter reached: {counter}")

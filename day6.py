@@ -43,7 +43,7 @@ class puzzle:
         ):
             self.next_step()
             counter += 1
-            print(counter)
+            # print(counter)
 
     def next_step(self):
         flag_within_map = True
@@ -110,7 +110,7 @@ class puzzle:
         obstacle_list = []
         # reinit values
         og_map = copy.deepcopy(self.map)
-            
+        
         
         
         # loop through all positions and see if it impacts path traveled
@@ -121,7 +121,8 @@ class puzzle:
             
             # if self.map[r][c] == "#":
             #     continue
-            
+            self.map = copy.deepcopy(og_map)
+            self.init_guard()
             self.map[r][c] = "#"        
             counter = 0
             flag_loop = False

@@ -71,9 +71,9 @@ class puzzle:
             self.row_idx = row
             self.col_idx = col
         if next_tile == "." or next_tile == "^":
-            # print(
-            #     f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
-            # )
+            print(
+                # f"Direction is: {self.direction}. Advancing from [{self.row_idx},{self.col_idx}] to [{row},{col}]"
+            )
             self.row_idx = row
             self.col_idx = col
             self.guard_past_positions.append([self.row_idx, self.col_idx])
@@ -129,14 +129,14 @@ class puzzle:
             ):
                 self.next_step()
                 counter += 1
-                print(counter)
+                # print(counter)
 
                 if counter >= max_count:
                     obstacle_list.append([r,c])
 
                     break
             
-            print(f"Potential Obstacle at: {r}|{c}. Counter reaeched: {counter}")
+            print(f"Potential Obstacle at: {r}|{c}. Counter reached: {counter}")
         
         self.new_obstacles = obstacle_list
         return

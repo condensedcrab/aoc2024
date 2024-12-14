@@ -115,7 +115,7 @@ class puzzle:
         
         # loop through all positions and see if it impacts path traveled
         # new_count = 0
-        for u in self.unique_locs:
+        for idx,u in enumerate(self.unique_locs):
             r = u[0]
             c = u[1]
             
@@ -129,6 +129,10 @@ class puzzle:
             # new_count += 1
             # if new_count > 1000:
             #     break
+            
+            if idx % 100 == 0:
+                print(f"Iter: {idx}/{len(self.unique_locs)}. {len(obstacle_list)} obstacles found.")
+                
             while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
                 0, self.map_size[1]
             ):
@@ -141,7 +145,7 @@ class puzzle:
                     # print(f"Obstacle at: {r}|{c}. Counter reached: {counter}")
                     break
                 
-           
+            # print(f"Obstacle at: {r}|{c}. Counter reached: {counter}")
             
         
         self.new_obstacles = obstacle_list

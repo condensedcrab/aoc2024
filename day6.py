@@ -1,4 +1,5 @@
-import copy 
+import copy
+
 
 class puzzle:
 
@@ -13,7 +14,7 @@ class puzzle:
         self.new_obstacles = []
 
     def parse_input(self):
-        self.map=[]
+        self.map = []
         with open("inputs/input_d6", "r") as f:
             for line in f.readlines():
                 self.map.append(list(line.replace("\n", "")))
@@ -36,7 +37,7 @@ class puzzle:
         return
 
     def guard_logic(self):
-      
+
         counter = 0
         while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
             0, self.map_size[1]
@@ -89,7 +90,7 @@ class puzzle:
 
     def calc_unique_locs(self):
         new_list = []
-        
+
         for m in self.guard_past_positions:
             if not new_list:
                 new_list.append(m)
@@ -98,41 +99,40 @@ class puzzle:
                 for n in new_list:
                     if m == n:
                         flag_found = True
-                
+
                 if flag_found is False:
                     new_list.append(m)
-                    
+
         self.unique_locs = new_list
-        
-        
+
     def calc_new_obstacle(self):
-        max_count = 50000
+        max_count = 12000
         obstacle_list = []
         # reinit values
         og_map = copy.deepcopy(self.map)
-        
-        
-        
+
         # loop through all positions and see if it impacts path traveled
         # new_count = 0
-        for idx,u in enumerate(self.unique_locs):
+        for idx, u in enumerate(self.unique_locs):
             r = u[0]
             c = u[1]
-            
-            # if self.map[r][c] == "#":
-            #     continue
+
+            if self.map[r][c] == "^":
+                continue
             self.parse_input()
             self.init_guard()
-            self.map[r][c] = "#"        
+            self.map[r][c] = "#"
             counter = 0
             flag_loop = False
             # new_count += 1
             # if new_count > 1000:
             #     break
-            
+
             if idx % 100 == 0:
-                print(f"Iter: {idx}/{len(self.unique_locs)}. {len(obstacle_list)} obstacles found.")
-                
+                print(
+                    f"Iter: {idx}/{len(self.unique_locs)}. {len(obstacle_list)} obstacles found."
+                )
+
             while self.row_idx in range(0, self.map_size[0]) and self.col_idx in range(
                 0, self.map_size[1]
             ):
@@ -141,16 +141,15 @@ class puzzle:
                 # print(counter)
 
                 if counter >= max_count:
-                    obstacle_list.append([r,c])
+                    obstacle_list.append([r, c])
                     # print(f"Obstacle at: {r}|{c}. Counter reached: {counter}")
                     break
-                
+
             # print(f"Obstacle at: {r}|{c}. Counter reached: {counter}")
-            
-        
+
         self.new_obstacles = obstacle_list
         return
-                
+
 
 if __name__ == "__main__":
     p = puzzle()
@@ -163,7 +162,7 @@ if __name__ == "__main__":
 
     print(f"Guard will travel to {len(p.unique_locs)} different positions.")
     # print(p.unique_locs)
-    
+
     p.calc_new_obstacle()
     print(f"We can place {len(p.new_obstacles)} new obstacles.")
 

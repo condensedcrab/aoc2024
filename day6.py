@@ -12,6 +12,7 @@ class puzzle:
         self.direction = 0
         self.unique_locs = []
         self.new_obstacles = []
+        self.is_loop = False
 
     def parse_input(self):
         self.map = []
@@ -105,6 +106,25 @@ class puzzle:
 
         self.unique_locs = new_list
 
+    def check_loop(self):
+        loop_def = 4  # 4 instances
+        flag_is_loop = False
+
+        for p in self.guard_past_positions:
+            counter = 0
+            for m in self.guard_past_positions:
+                if p == m:
+                    counter += 1
+
+            if counter >= loop_def:
+                flag_is_loop = True
+                break
+        # update class variable if we are in a loop
+        if flag_is_loop:
+            self.is_loop = True
+
+        return
+
     def calc_new_obstacle(self):
         max_count = 12000
         obstacle_list = []
@@ -124,6 +144,7 @@ class puzzle:
             self.map[r][c] = "#"
             counter = 0
             flag_loop = False
+
             # new_count += 1
             # if new_count > 1000:
             #     break
@@ -138,6 +159,7 @@ class puzzle:
             ):
                 self.next_step()
                 counter += 1
+                flag_loop = self.check_loop()
                 # print(counter)
 
                 if counter >= max_count:

@@ -126,7 +126,7 @@ class puzzle:
         return
 
     def calc_new_obstacle(self):
-        max_count = 12000
+        max_count = 8000
         obstacle_list = []
         # reinit values
         og_map = copy.deepcopy(self.map)
@@ -159,7 +159,10 @@ class puzzle:
             ):
                 self.next_step()
                 counter += 1
-                flag_loop = self.check_loop()
+
+                # check sporadically
+                if counter % 2000 == 0:
+                    flag_loop = self.check_loop()
                 # print(counter)
 
                 if counter >= max_count:

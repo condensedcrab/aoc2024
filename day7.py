@@ -13,6 +13,16 @@ input = """
 """
 
 
+def parse_input(file):
+    input = {}
+        with open("inputs/input_d7", "r") as f:
+            for line in f.readlines():
+                temp_split = line.split(": ")
+                input[temp_split[0]]: temp_split[1]
+    
+    
+    
+
 def calc_options(input_list):
 
     output = []
@@ -22,3 +32,6 @@ def calc_options(input_list):
         output.append(input_list[0] * input_list[1])
 
     return output
+
+
+calc_options([10, 19])

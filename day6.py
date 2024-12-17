@@ -107,7 +107,7 @@ class puzzle:
         self.unique_locs = new_list
 
     def check_loop(self):
-        loop_def = 4  # 4 instances
+        loop_def = 6  # instances
         flag_is_loop = False
 
         for p in self.guard_past_positions:

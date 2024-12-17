@@ -23,6 +23,7 @@ class puzzle:
         self.map_size = [len(self.map), len(self.map[0])]
 
     def init_guard(self):
+        self.is_loop = False
         col_idx = -1
         for row_idx, row in enumerate(self.map):
             try:
@@ -107,7 +108,7 @@ class puzzle:
         self.unique_locs = new_list
 
     def check_loop(self):
-        loop_def = 6  # instances
+        loop_def = 8  # instances
         flag_is_loop = False
 
         for p in self.guard_past_positions:

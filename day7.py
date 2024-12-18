@@ -40,6 +40,7 @@ def calc_options(input_list):
     return output                
 
 
+
 print(calc_options([10, 19]))
 print(calc_options([16, 10, 13]))
 

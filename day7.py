@@ -31,15 +31,19 @@ def calc_options(input_list):
     while len(my_list) >= 2:
         a = my_list.pop(0)
         b = my_list.pop(0)
+
         if len(output) == 0:
-            output.append(a+b)
-            output.append(a*b)
+            output = np.append(output,a+b)
+            output = np.append(output,a*b)
         else:
-            for ele in output:
-                
+            c = output
+            output = np.concat((c+(a+b),c*(a+b), c+(a*b), c*(a*b)))
+        my_list = my_list[2:] # drop the list down 2 elements
+
+    return output                
 
 
-calc_options([10, 19])
-calc_options([16, 10, 13])
+print(calc_options([10, 19]))
+print(calc_options([16, 10, 13]))
 
 # %%

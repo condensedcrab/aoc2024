@@ -25,21 +25,9 @@ def parse_input(file):
 
 
 def calc_options(input_list):
-    output = np.array([]) # we are going to be changing these arrays a bunch but they're small
-    my_list = copy.deepcopy(input_list)
-
-    while len(my_list) >= 2:
-        a = my_list.pop(0)
-        b = my_list.pop(0)
-
-        if len(output) == 0:
-            output = np.append(output,a+b)
-            output = np.append(output,a*b)
-        else:
-            c = output
-            output = np.concat((c+(a+b),c*(a+b), c+(a*b), c*(a*b)))
-        my_list = my_list[2:] # drop the list down 2 elements
-
+    output = np.zeros(2**(len(input_list)-1))
+    
+    
     return output                
 
 

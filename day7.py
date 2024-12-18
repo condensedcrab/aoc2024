@@ -30,13 +30,27 @@ def calc_options(input_list):
     if len(input_list) == 2:
         output.append(input_list[0]+input_list[1])
         output.append(input_list[0]*input_list[1])
+        
         return 
-     else:
+    else:
+        new_list = np.array([])
+        
+        a = input_list.pop(0) 
+        b = input_list.pop(0)
+        
+        new_list[0] = a+b
+        new_list[1] = a*b
+        
+        while len(input_list) > 1:
+            c = input_list.pop(0)
+             new_list = np.append(new_list+c,new_list*c)
+        
+        
                    
 
 
 
 print(calc_options([10, 19]))
-print(calc_options([16, 10, 13]))
+print(calc_options([81,40,27]))
 
 # %%

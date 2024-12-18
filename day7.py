@@ -1,6 +1,6 @@
 # %%
 
-import numpy
+import numpy as np
 import copy
 
 input = """
@@ -25,7 +25,7 @@ def parse_input(file):
 
 
 def calc_options(input_list):
-    output = []
+    output = np.array([]) # we are going to be changing these arrays a bunch but they're small
     my_list = copy.deepcopy(input_list)
 
     while len(my_list) >= 2:

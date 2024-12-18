@@ -1,6 +1,7 @@
 # %%
 
 import numpy
+import copy
 
 input = """
 190: 10 19
@@ -24,16 +25,13 @@ def parse_input(file):
 
 
 def calc_options(input_list):
-    if len(input_list) == 2:
-        return [input_list[0] + input_list[1], input_list[0] * input_list[1]]
-    else:
-        short_list = input_list[2:]
+    output = []
+    my_list = copy.deepcopy(input_list)
 
-        return [
-            calc_options(short_list.insert(0, input_list[0] + input_list[1]))
-            # calc_options([short_list.insert(0, input_list[0] + input_list[1])]),
-            # calc_options(short_list.insert(0, input_list[0] * input_list[1])),
-        ]
+    while len(my_list) > 2:
+        a = my_list[.pop(0)
+        b = my_list.pop(0)]
+        output.append()
 
 
 calc_options([10, 19])

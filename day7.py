@@ -28,10 +28,15 @@ def calc_options(input_list):
     output = []
     my_list = copy.deepcopy(input_list)
 
-    while len(my_list) > 2:
-        a = my_list[.pop(0)
-        b = my_list.pop(0)]
-        output.append()
+    while len(my_list) >= 2:
+        a = my_list.pop(0)
+        b = my_list.pop(0)
+        if len(output) == 0:
+            output.append(a+b)
+            output.append(a*b)
+        else:
+            for ele in output:
+                
 
 
 calc_options([10, 19])

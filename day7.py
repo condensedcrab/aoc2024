@@ -25,13 +25,11 @@ def parse_input(file):
 
 def calc_options(input_list):
 
-    output = []
-
     if len(input_list) == 2:
-        output.append(input_list[0] + input_list[1])
-        output.append(input_list[0] * input_list[1])
-
-    return output
+        return [input_list[0] + input_list[1], input_list[0] * input_list[1]]
+    else:
+        return [calc_options([input_list[0] + input_list[1],input_list[2:]]), 
+                calc_options([input_list[0] * input_list[1],input_list[2:]])]
 
 
 calc_options([10, 19])

@@ -27,7 +27,16 @@ def parse_input(file):
 def calc_options(input_list):
     output = np.zeros(2**(len(input_list)-1))
     
-    
+    for idx,val in enumerate(input_list):
+        
+        for idx2,v in enumerate(output):
+            if idx2 % 2 == 0:
+                output[idx2] += val
+            else:
+                if output[idx2] == 0:
+                    output[idx2] = val
+                else:
+                    output[idx2] *= val
     return output                
 
 

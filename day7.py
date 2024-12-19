@@ -18,7 +18,8 @@ input = """
 
 def parse_input():
     input = {}
-    with open("inputs/input_d7", "r") as f:
+    # inputs/input_d7
+    with open("test", "r") as f:
         for line in f.readlines():
             temp_split = line.split(": ")
             temp_list = temp_split[1].strip("\n").split(" ")
@@ -37,6 +38,8 @@ def calc_options(my_vars):
     if len(input_list) == 2:
         output.append(input_list[0] + input_list[1])
         output.append(input_list[0] * input_list[1])
+        output.append(int(str(input_list[0]) + str(input_list[1])))
+
     elif len(input_list) == 0:
         print("no values in the input list")
     else:
@@ -47,10 +50,14 @@ def calc_options(my_vars):
 
         new_list = np.append(new_list, [a + b])
         new_list = np.append(new_list, [a * b])
+        new_list = np.append(new_list, [int(str(a) + str(b))])
 
         while len(input_list) >= 1:
             c = input_list.pop(0)
-            new_list = np.append(new_list + c, new_list * c)
+
+            new_list = np.append(
+                new_list + c, new_list * c, part2_concat(new_list, c)
+            )  # part 1
 
         output = new_list
 
@@ -68,6 +75,14 @@ def loop_input(my_dict):
     for k, v in my_dict.items():
         if evaluate_equations(k, v):
             output.append(k)
+
+    return output
+
+
+def part2_concat(arr, concat_val):
+    output = arr.astype(int)
+    for idx, val in enumerate(output):
+        output[idx] = int(str(val) + str(concat_val))
 
     return output
 

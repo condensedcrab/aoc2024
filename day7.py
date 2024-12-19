@@ -58,6 +58,16 @@ def evaluate_equations(key_val, input_list):
     return key_val in values
 
 
+def loop_input(my_dict):
+    output = []
+
+    for i, (k, v) in enumerate(my_dict):
+        if evaluate_equations(k, v):
+            output.append(k)
+
+    return output
+
+
 print(calc_options([10, 19]))
 print(calc_options([81, 40, 27]))
 print(calc_options([11, 6, 16, 20]))

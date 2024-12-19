@@ -16,12 +16,17 @@ input = """
 """
 
 
-def parse_input(file):
+def parse_input():
     input = {}
     with open("inputs/input_d7", "r") as f:
         for line in f.readlines():
             temp_split = line.split(": ")
-            input[temp_split[0]]: temp_split[1]
+            temp_list = temp_split[1].strip("\n").split(" ")
+            temp_ints = [int(item) for item in temp_list]
+
+            input[int(temp_split[0])] = temp_ints
+
+    return input
 
 
 def calc_options(input_list):
@@ -48,7 +53,17 @@ def calc_options(input_list):
     return output
 
 
+def evaluate_equations(key_val, input_list):
+    values = calc_options(input_list)
+    return key_val in values
+
+
 print(calc_options([10, 19]))
 print(calc_options([81, 40, 27]))
+print(calc_options([11, 6, 16, 20]))
+
+evaluate_equations(51, [10, 19])
+
+s = parse_input()
 
 # %%

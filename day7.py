@@ -18,7 +18,8 @@ input = """
 
 def parse_input():
     input = {}
-    with open("inputs/input_d7", "r") as f:
+    with open("test", "r") as f:
+        # with open("inputs/input_d7", "r") as f:
         for line in f.readlines():
             temp_split = line.split(": ")
             temp_list = temp_split[1].strip("\n").split(" ")
@@ -29,12 +30,16 @@ def parse_input():
     return input
 
 
-def calc_options(input_list):
+def calc_options(my_vars):
     output = []
-
+    input_list = copy.deepcopy(
+        my_vars
+    )  # stop this from deleting variables from the dictionary lists
     if len(input_list) == 2:
         output.append(input_list[0] + input_list[1])
         output.append(input_list[0] * input_list[1])
+    elif len(input_list) == 0:
+        print("no values in the input list")
     else:
         new_list = np.array([])
 
@@ -61,19 +66,18 @@ def evaluate_equations(key_val, input_list):
 def loop_input(my_dict):
     output = []
 
-    for i, (k, v) in enumerate(my_dict):
+    for k, v in my_dict.items():
         if evaluate_equations(k, v):
             output.append(k)
 
     return output
 
 
-print(calc_options([10, 19]))
-print(calc_options([81, 40, 27]))
-print(calc_options([11, 6, 16, 20]))
-
-evaluate_equations(51, [10, 19])
-
 s = parse_input()
+
+vals = loop_input(s)
+print(vals)
+
+print(f"Sum of correct inputs are: {sum(vals)}")
 
 # %%

@@ -18,8 +18,7 @@ input = """
 
 def parse_input():
     input = {}
-    with open("test", "r") as f:
-        # with open("inputs/input_d7", "r") as f:
+    with open("inputs/input_d7", "r") as f:
         for line in f.readlines():
             temp_split = line.split(": ")
             temp_list = temp_split[1].strip("\n").split(" ")

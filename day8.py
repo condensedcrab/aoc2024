@@ -39,6 +39,35 @@ def find_unique_chars(map):
     return list(set(output))
 
 
+def find_locs(my_char, char_map):
+    locs = []
+
+    for row_idx, row in enumerate(char_map):
+        try:
+            col_idx = row.index(my_char)
+            locs.append([row_idx, col_idx])
+        except:
+            pass
+
+    return locs
+
+
+def calc_antinodes(locations, my_map):
+    anodes = []
+    nrows = len(my_map)
+    ncols = len(my_map[0])
+
+    for i in range(len(locations)):
+        for j in range(i + 1, len(locations)):
+            delta_row = locations[j][0] - locations[i][0]
+            delta_col = locations[j][1] - locations[i][1]
+
+    return anodes
+
+
 my_map = parse_input()
 u = find_unique_chars(my_map)
 print(u)
+
+l = find_locs("0", my_map)
+print(l)

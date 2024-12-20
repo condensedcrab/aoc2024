@@ -70,7 +70,7 @@ def calc_antinodes_part2(locations, my_map):
             delta_row = locations[j][0] - locations[i][0]
             delta_col = locations[j][1] - locations[i][1]
 
-            for n in range(-20, 20):
+            for n in range(-40, 40):
                 anodes.append(
                     [locations[i][0] - delta_row * n, locations[i][1] - delta_col * n]
                 )
@@ -122,4 +122,31 @@ unq_loc = unique_locs(total_locs)
 
 print(f"Total number of unique antinodes is: {len(unq_loc)}")
 
-# %% part 2 test
+# %% part 2
+
+my_map = parse_input("test")
+u = find_unique_chars(my_map)
+
+total_locs = []
+for c in u:
+    l = find_locs(c, my_map)
+    a = calc_antinodes_part2(l, my_map)
+    total_locs += a
+
+
+unq_loc = unique_locs(total_locs)
+
+print(f"Part2 test case: Total number of unique antinodes is: {len(unq_loc)}")
+my_map = parse_input("inputs/input_d8")
+u = find_unique_chars(my_map)
+
+total_locs = []
+for c in u:
+    l = find_locs(c, my_map)
+    a = calc_antinodes_part2(l, my_map)
+    total_locs += a
+
+
+unq_loc = unique_locs(total_locs)
+
+print(f"Part 2 big kahuna: Total number of unique antinodes is: {len(unq_loc)}")

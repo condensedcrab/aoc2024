@@ -68,7 +68,7 @@ def find_nan_chunks(my_str):
     b = np.where(np.isnan(my_str))
     b = b[0]
 
-    start = 0
+    start = b[0]
     previous_value = b[0]
     length = 1
 
@@ -96,7 +96,7 @@ def find_digit_chunks(my_str):
     b = np.where(~np.isnan(my_str))
     b = b[0]
 
-    start = 0
+    start = b[0]
     previous_value = my_str[b[0]]
     length = 1
 
@@ -108,24 +108,28 @@ def find_digit_chunks(my_str):
                 output = np.array([start, length])
             else:
                 output = np.vstack((output, np.array([start, length])))
-            start = idx
+            start = b[idx]
             length = 1
 
         previous_value = my_str[b[idx]]
 
+    output = np.vstack((output, np.array([start, length])))
     return output
 
 
-def move_chunks(my_str, nan_chunks, digit_chunks):
+def move_chunks(my_str, digit_chunks):
     new_list = my_str
 
-    for idx, val in enumerate(digit_chunks):
+    for idx, val in enumerate(reversed(digit_chunks)):
+        digit = my_str[val[0]]
         d_len = val[1]
 
+        nan_chunks = find_nan_chunks(new_list)  # have to regenerate each time
         for n in nan_chunks:
-            if n[1] <= d_len:
-                new_list[n[0] : n[0] + n[1]] = my_str[val[0] : val[0] + val[1]]
-                continue
+            if n[1] >= d_len:
+                new_list[n[0] : n[0] + val[1]] = digit
+                new_list[val[0] : val[0] + val[1]] = np.nan
+                break
 
     return new_list
 
@@ -165,4 +169,4 @@ d = convert_to_np(a)
 # print(f"Input vector is: {d}")
 n_chunks = find_nan_chunks(d)
 d_chunks = find_digit_chunks(d)
-output = move_chunks(d, n_chunks, d_chunks)
+output = move_chunks(d, d_chunks)

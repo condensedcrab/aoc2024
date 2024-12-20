@@ -43,7 +43,7 @@ def calc_options(my_vars):
     elif len(input_list) == 0:
         print("no values in the input list")
     else:
-        new_list = np.array([])
+        new_list = np.array([], dtype=int)
 
         a = input_list.pop(0)
         b = input_list.pop(0)
@@ -55,13 +55,15 @@ def calc_options(my_vars):
         while len(input_list) >= 1:
             c = input_list.pop(0)
 
-            new_list = np.append(
-                new_list + c, new_list * c, part2_concat(new_list, c)
-            )  # part 1
+            new_list = np.concat(
+                (new_list + c, new_list * c, part2_concat(new_list, c)), axis=None
+            )
 
+            new_list
         output = new_list
 
-    return output
+    output = np.array(output)
+    return output.astype(int)
 
 
 def evaluate_equations(key_val, input_list):

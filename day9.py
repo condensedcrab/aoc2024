@@ -60,20 +60,21 @@ def move_files(my_str):
     return my_str
 
 
-@nb.njit  # also works without but then it's several orders of magnitudes slower
-def max_consecutive_nan(arr):
-    max_ = 0
-    current = 0
-    idx = 0
-    while idx < arr.size:
-        while idx < arr.size and math.isnan(arr[idx]):
-            current += 1
-            idx += 1
-        if current > max_:
-            max_ = current
-        current = 0
-        idx += 1
-    return max_
+def last_digit_chunk(my_str):
+    b = np.where(~np.isnan(my_str))
+    digit = my_str[np.max(b)]
+
+    for i in range(1, len(my_str) - 1):
+        if my_str[np.max(b) - i] == digit:
+            continue
+        else:
+            chunk_start = np.max(b) - i
+            break
+    return np.array([chunk_start + 1, np.max(b)])
+
+def find_free_chunks(my_str):
+    
+    
 
 
 def move_chunks(my_str):
@@ -107,21 +108,23 @@ def calc_checksum(data):
 
 
 # %% part 1
-s = ""
-with open("inputs/input_d9", "r") as f:
-    for line in f.readlines():
-        s = s.join(line)
+# s = ""
+# with open("inputs/input_d9", "r") as f:
+#     for line in f.readlines():
+#         s = s.join(line)
 
-a = unwrap(s)
+# a = unwrap(s)
 
-d = convert_to_np(a)
-b = move_files(d)
-c = calc_checksum(b)
+# d = convert_to_np(a)
+# b = move_files(d)
+# c = calc_checksum(b)
 
-print(f"Checksum is: {c}")
+# print(f"Checksum is: {c}")
 
 # %% part 2
 
 s = "2333133121414131402"
 a = unwrap(s)
 d = convert_to_np(a)
+
+f = last_digit_chunk(d)

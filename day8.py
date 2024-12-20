@@ -1,3 +1,4 @@
+# %%
 s = """
 ............
 ........0...
@@ -11,6 +12,21 @@ s = """
 .........A..
 ............
 ............
+"""
+
+f = """
+......#....#
+...#....0...
+....#0....#.
+..#....0....
+....0....#..
+.#....A.....
+...#........
+#......#....
+........A...
+.........A..
+..........#.
+..........#.
 """
 
 
@@ -46,6 +62,7 @@ def find_locs(my_char, char_map):
         try:
             col_idx = row.index(my_char)
             locs.append([row_idx, col_idx])
+
         except:
             pass
 
@@ -62,6 +79,8 @@ def calc_antinodes(locations, my_map):
             delta_row = locations[j][0] - locations[i][0]
             delta_col = locations[j][1] - locations[i][1]
 
+            anodes.append([locations[i][0] - delta_row, locations[i][1] - delta_col])
+            anodes.append([locations[j][0] + delta_row, locations[j][1] + delta_col])
     return anodes
 
 
@@ -69,5 +88,8 @@ my_map = parse_input()
 u = find_unique_chars(my_map)
 print(u)
 
-l = find_locs("0", my_map)
+l = find_locs("A", my_map)
 print(l)
+
+a = calc_antinodes(l, my_map)
+print(a)

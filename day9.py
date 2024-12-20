@@ -46,7 +46,7 @@ def move_files(my_str):
         idx_num = last_digit(my_str)
 
         value = my_str[idx_num]
-        my_str[idx_num] = "."
+        my_str[idx_num] = np.nan
         my_str[idx_dot] = value
 
         counter += 1
@@ -63,7 +63,7 @@ def calc_checksum(data):
     for idx, val in enumerate(data):
         if val == ".":
             continue
-        v = int(val)
+c        v = int(val)
         output += idx * v
 
     return output

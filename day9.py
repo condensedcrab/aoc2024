@@ -1,6 +1,8 @@
 s = "2333133121414131402"
 # s = "12345"
 import numpy as np
+import numba as nb
+import math
 
 
 def unwrap(s):
@@ -58,9 +60,20 @@ def move_files(my_str):
     return my_str
 
 
-def first_dot_chunk(my_str):
-    b = np.where(np.isnan(my_str))
-    return np.min(b)
+@nb.njit  # also works without but then it's several orders of magnitudes slower
+def max_consecutive_nan(arr):
+    max_ = 0
+    current = 0
+    idx = 0
+    while idx < arr.size:
+        while idx < arr.size and math.isnan(arr[idx]):
+            current += 1
+            idx += 1
+        if current > max_:
+            max_ = current
+        current = 0
+        idx += 1
+    return max_
 
 
 def move_chunks(my_str):

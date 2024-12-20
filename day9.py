@@ -101,6 +101,34 @@ def find_nan_chunks(my_str):
     return output
 
 
+def find_digit_chunks(my_str):
+    """
+    provides start position and distance to end position. Technically, the length here is one less than the canonical length
+    """
+    output = np.array([])
+    b = np.where(~np.isnan(my_str))
+    b = b[0]
+
+    start = 0
+    previous_value = my_str[b[0]]
+    length = 0
+
+    for idx in range(1, len(b)):
+        if previous_value == my_str[b[idx]]:
+            length += 1
+        else:
+            if len(output) == 0:
+                output = np.array([start, length])
+            else:
+                output = np.vstack((output, np.array([start, length])))
+            start = idx
+            length = 0
+
+        previous_value = my_str[b[idx]]
+
+    return output
+
+
 def move_chunks(my_str):
     counter = 0
     while first_dot(my_str) < last_digit(my_str):
@@ -152,4 +180,7 @@ a = unwrap(s)
 d = convert_to_np(a)
 
 f = last_digit_chunk(d)
-find_nan_chunks(d)
+
+print(f"Input vector is: {d}")
+print(find_nan_chunks(d))
+print(find_digit_chunks(d))

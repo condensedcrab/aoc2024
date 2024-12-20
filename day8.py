@@ -73,15 +73,6 @@ def unique_locs(location_list):
 # %% test region for part 1
 my_map = parse_input("test")
 u = find_unique_chars(my_map)
-print(u)
-
-l = find_locs("A", my_map)
-print(l)
-
-a = calc_antinodes(l, my_map)
-print(a)
-
-
 total_locs = []
 for c in u:
     l = find_locs(c, my_map)
@@ -94,20 +85,14 @@ print(f"Total number of unique antinodes is: {len(unique_locs(total_locs))}")
 # %% part 1
 my_map = parse_input("inputs/input_d8")
 u = find_unique_chars(my_map)
-print(u)
-
-l = find_locs("A", my_map)
-print(l)
-
-a = calc_antinodes(l, my_map)
-print(a)
-
 
 total_locs = []
 for c in u:
     l = find_locs(c, my_map)
-    a = calc_antinodes(l, my_map)
+    a = calc_antinodes2(l)
     total_locs += a
 
 
-print(f"Total number of unique antinodes is: {len(unique_locs(total_locs))}")
+unq_loc = unique_locs(total_locs)
+
+print(f"Total number of unique antinodes is: {len(unq_loc)}")

@@ -1,39 +1,10 @@
 # %%
-s = """
-............
-........0...
-.....0......
-.......0....
-....0.......
-......A.....
-............
-............
-........A...
-.........A..
-............
-............
-"""
-
-f = """
-......#....#
-...#....0...
-....#0....#.
-..#....0....
-....0....#..
-.#....A.....
-...#........
-#......#....
-........A...
-.........A..
-..........#.
-..........#.
-"""
 
 
-def parse_input():
+def parse_input(filename):
     map = []
     # inputs/input_d7
-    with open("test", "r") as f:
+    with open(filename, "r") as f:
         for line in f.readlines():
             map.append(list(line.replace("\n", "")))
 
@@ -81,10 +52,16 @@ def calc_antinodes(locations, my_map):
 
             anodes.append([locations[i][0] - delta_row, locations[i][1] - delta_col])
             anodes.append([locations[j][0] + delta_row, locations[j][1] + delta_col])
-    return anodes
+
+    clean_anodes = []
+    for idx, val in enumerate(anodes):
+        if not (val[0] < 0 or val[0] > nrows or val[1] < 0 or val[1] > ncols):
+            clean_anodes.append(val)
+    return clean_anodes
 
 
-my_map = parse_input()
+# %% test region
+my_map = parse_input("test")
 u = find_unique_chars(my_map)
 print(u)
 
@@ -93,3 +70,5 @@ print(l)
 
 a = calc_antinodes(l, my_map)
 print(a)
+
+answer = parse_input("test2")

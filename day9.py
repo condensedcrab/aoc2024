@@ -58,6 +58,30 @@ def move_files(my_str):
     return my_str
 
 
+def first_dot_chunk(my_str):
+    b = np.where(np.isnan(my_str))
+    return np.min(b)
+
+
+def move_chunks(my_str):
+    counter = 0
+    while first_dot(my_str) < last_digit(my_str):
+        idx_dot = first_dot(my_str)
+        idx_num = last_digit(my_str)
+
+        value = my_str[idx_num]
+        my_str[idx_num] = np.nan
+        my_str[idx_dot] = value
+
+        counter += 1
+        if counter % 500 == 0:
+            print(f"Iteration: {counter}")
+
+        # print(my_str)
+
+    return my_str
+
+
 def calc_checksum(data):
     output = 0
     for idx, val in enumerate(data):
@@ -82,3 +106,9 @@ b = move_files(d)
 c = calc_checksum(b)
 
 print(f"Checksum is: {c}")
+
+# %% part 2
+
+s = "2333133121414131402"
+a = unwrap(s)
+d = convert_to_np(a)

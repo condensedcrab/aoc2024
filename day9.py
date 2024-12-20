@@ -61,10 +61,10 @@ def move_files(my_str):
 def calc_checksum(data):
     output = 0
     for idx, val in enumerate(data):
-        if val == ".":
+        if np.isnan(val):
             continue
-c        v = int(val)
-        output += idx * v
+
+        output += idx * val
 
     return output
 

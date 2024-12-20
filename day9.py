@@ -45,12 +45,18 @@ def move_files(my_str):
 
 
 def calc_checksum(data):
-    output = []
+    output = 0
+    for idx, val in enumerate(data):
+        if val == ".":
+            continue
+        v = int(val)
+        output += idx * v
 
     return output
 
 
 a = unwrap(s)
 b = move_files(a)
+c = calc_checksum(b)
 
-print(b)
+print(f"Checksum is: {c}")

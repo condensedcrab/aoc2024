@@ -60,6 +60,31 @@ def calc_antinodes(locations, my_map):
     return clean_anodes
 
 
+def calc_antinodes_part2(locations, my_map):
+    anodes = []
+    nrows = len(my_map)
+    ncols = len(my_map[0])
+
+    for i in range(len(locations)):
+        for j in range(i + 1, len(locations)):
+            delta_row = locations[j][0] - locations[i][0]
+            delta_col = locations[j][1] - locations[i][1]
+
+            for n in range(-20, 20):
+                anodes.append(
+                    [locations[i][0] - delta_row * n, locations[i][1] - delta_col * n]
+                )
+                anodes.append(
+                    [locations[j][0] + delta_row * n, locations[j][1] + delta_col * n]
+                )
+
+    clean_anodes = []
+    for idx, val in enumerate(anodes):
+        if val[0] >= 0 and val[0] < nrows and val[1] >= 0 and val[1] < ncols:
+            clean_anodes.append(val)
+    return clean_anodes
+
+
 def unique_locs(location_list):
     output = []
 
@@ -97,74 +122,4 @@ unq_loc = unique_locs(total_locs)
 
 print(f"Total number of unique antinodes is: {len(unq_loc)}")
 
-# %%
-
-inputFile = open("inputs/input_d8", "r")
-input = inputFile.readlines()
-inputFile.close()
-
-for line in input:
-    input[input.index(line)] = line.replace("\n", "")
-
-# The variable "output" is what will be printed
-output = ""
-
-# Calculate amount of antinodes
-characters = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789"
-antinodes = []
-
-for c in range(len(characters)):
-    i = characters[c]
-    loc = []
-    for line in range(len(input)):
-        y = input[line]
-        for column in range(len(y)):
-            x = y[column]
-            if x == i:
-                loc.append([column, line])
-
-    for o in range(len(loc)):
-        for t in range(len(loc)):
-            if o == t:
-                continue
-
-            x1 = loc[o][0]
-            y1 = loc[o][1]
-            x2 = loc[t][0]
-            y2 = loc[t][1]
-
-            dx = x2 - x1
-            dy = y2 - y1
-
-            antinodes.append([x1 - dx, y1 - dy])
-
-# Remove duplicates and out-of-bounds antinodes
-final = []
-
-for i in antinodes:
-    if (
-        i not in final
-        and i[0] >= 0
-        and i[1] >= 0
-        and i[0] + 1 <= len(input)
-        and i[1] + 1 <= len(input[0])
-    ):
-        final.append(i)
-
-output = len(final)
-
-# Print the output
-print(output)
-
-# %% compare
-
-for ele in unq_loc:
-    flag_found = False
-
-    for l in final:
-        if ele == output:
-            flag_found = True
-            break
-
-    if not flag_found:
-        print(ele)
+# %% part 2 test

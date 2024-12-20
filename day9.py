@@ -30,16 +30,13 @@ def convert_to_np(s):
 
 
 def first_dot(my_str):
-    return my_str.index(".")
+    b = np.where(np.isnan(my_str))
+    return np.min(b)
 
 
 def last_digit(my_str):
-    first_digit = 0
-    for idx, val in enumerate(my_str):
-        if val.isdigit() and idx > first_digit:
-            first_digit = idx
-
-    return first_digit
+    b = np.where(~np.isnan(my_str))
+    return np.max(b)
 
 
 def move_files(my_str):
@@ -72,12 +69,6 @@ def calc_checksum(data):
     return output
 
 
-# %% testing
-a = unwrap(s)
-b = move_files(a)
-c = calc_checksum(b)
-
-print(f"Checksum is: {c}")
 # %% part 1
 s = ""
 with open("inputs/input_d9", "r") as f:
@@ -87,7 +78,7 @@ with open("inputs/input_d9", "r") as f:
 a = unwrap(s)
 
 d = convert_to_np(a)
-b = move_files(a)
+b = move_files(d)
 c = calc_checksum(b)
 
 print(f"Checksum is: {c}")

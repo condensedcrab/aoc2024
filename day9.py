@@ -62,7 +62,7 @@ def move_files(my_str):
 
 def find_nan_chunks(my_str):
     """
-    provides start position and distance to end position. Technically, the length here is one less than the canonical length
+    provides start position and distance to end position.
     """
     output = np.array([])
     b = np.where(np.isnan(my_str))
@@ -70,7 +70,7 @@ def find_nan_chunks(my_str):
 
     start = 0
     previous_value = b[0]
-    length = 0
+    length = 1
 
     for idx in range(1, len(b)):
         if b[idx] - previous_value == 1:
@@ -81,7 +81,7 @@ def find_nan_chunks(my_str):
             else:
                 output = np.vstack((output, np.array([start, length])))
             start = idx
-            length = 0
+            length = 1
 
         previous_value = b[idx]
 
@@ -90,7 +90,7 @@ def find_nan_chunks(my_str):
 
 def find_digit_chunks(my_str):
     """
-    provides start position and distance to end position. Technically, the length here is one less than the canonical length
+    provides start position and distance to end position.
     """
     output = np.array([])
     b = np.where(~np.isnan(my_str))
@@ -98,7 +98,7 @@ def find_digit_chunks(my_str):
 
     start = 0
     previous_value = my_str[b[0]]
-    length = 0
+    length = 1
 
     for idx in range(1, len(b)):
         if previous_value == my_str[b[idx]]:
@@ -109,7 +109,7 @@ def find_digit_chunks(my_str):
             else:
                 output = np.vstack((output, np.array([start, length])))
             start = idx
-            length = 0
+            length = 1
 
         previous_value = my_str[b[idx]]
 
@@ -117,22 +117,17 @@ def find_digit_chunks(my_str):
 
 
 def move_chunks(my_str, nan_chunks, digit_chunks):
-    # counter = 0
-    # while first_dot(my_str) < last_digit(my_str):
-    #     idx_dot = first_dot(my_str)
-    #     idx_num = last_digit(my_str)
+    new_list = my_str
 
-    #     value = my_str[idx_num]
-    #     my_str[idx_num] = np.nan
-    #     my_str[idx_dot] = value
+    for idx, val in enumerate(digit_chunks):
+        d_len = val[1]
 
-    #     counter += 1
-    #     if counter % 500 == 0:
-    #         print(f"Iteration: {counter}")
+        for n in nan_chunks:
+            if n[1] <= d_len:
+                new_list[n[0] : n[0] + n[1]] = my_str[val[0] : val[0] + val[1]]
+                continue
 
-    # print(my_str)
-
-    return my_str
+    return new_list
 
 
 def calc_checksum(data):
@@ -166,8 +161,8 @@ s = "2333133121414131402"
 a = unwrap(s)
 d = convert_to_np(a)
 
-f = last_digit_chunk(d)
 
 # print(f"Input vector is: {d}")
 n_chunks = find_nan_chunks(d)
 d_chunks = find_digit_chunks(d)
+output = move_chunks(d, n_chunks, d_chunks)

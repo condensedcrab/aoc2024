@@ -60,19 +60,6 @@ def move_files(my_str):
     return my_str
 
 
-def last_digit_chunk(my_str):
-    b = np.where(~np.isnan(my_str))
-    digit = my_str[np.max(b)]
-
-    for i in range(1, len(my_str) - 1):
-        if my_str[np.max(b) - i] == digit:
-            continue
-        else:
-            chunk_start = np.max(b) - i
-            break
-    return np.array([chunk_start + 1, np.max(b)])
-
-
 def find_nan_chunks(my_str):
     """
     provides start position and distance to end position. Technically, the length here is one less than the canonical length
@@ -181,6 +168,6 @@ d = convert_to_np(a)
 
 f = last_digit_chunk(d)
 
-print(f"Input vector is: {d}")
-print(find_nan_chunks(d))
-print(find_digit_chunks(d))
+# print(f"Input vector is: {d}")
+n_chunks = find_nan_chunks(d)
+d_chunks = find_digit_chunks(d)

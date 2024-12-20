@@ -129,21 +129,21 @@ def find_digit_chunks(my_str):
     return output
 
 
-def move_chunks(my_str):
-    counter = 0
-    while first_dot(my_str) < last_digit(my_str):
-        idx_dot = first_dot(my_str)
-        idx_num = last_digit(my_str)
+def move_chunks(my_str, nan_chunks, digit_chunks):
+    # counter = 0
+    # while first_dot(my_str) < last_digit(my_str):
+    #     idx_dot = first_dot(my_str)
+    #     idx_num = last_digit(my_str)
 
-        value = my_str[idx_num]
-        my_str[idx_num] = np.nan
-        my_str[idx_dot] = value
+    #     value = my_str[idx_num]
+    #     my_str[idx_num] = np.nan
+    #     my_str[idx_dot] = value
 
-        counter += 1
-        if counter % 500 == 0:
-            print(f"Iteration: {counter}")
+    #     counter += 1
+    #     if counter % 500 == 0:
+    #         print(f"Iteration: {counter}")
 
-        # print(my_str)
+    # print(my_str)
 
     return my_str
 
